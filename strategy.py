@@ -16,3 +16,11 @@ def ma_down_penetrate(price, ma, last_ma):
 
 def constant_compare(idx, op, constant):
     return eval(str(idx) + op + str(constant), locals())
+
+
+def bounce_back_up(last_price, c_price, last_idx, c_idx):
+    return (last_price <= last_idx) and (c_price >= c_idx)
+
+
+def bounce_back_down(last_price, c_price, last_idx, c_idx):
+    return (last_price >= last_idx) and (c_price <= c_idx)

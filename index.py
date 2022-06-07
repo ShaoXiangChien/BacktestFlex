@@ -22,8 +22,18 @@ def n_macd(df):
     return pd.DataFrame({'macNorm': macNorm, 'trigger': trigger}, index=df.index)
 
 
-def five_in_one(df):
-    pass
+def sr_bias(df):
+    ma10 = df['close'].rolling(window=10).mean()
+    df['ma10'] = ma10
+    sr = df.apply(lambda row: (row['close'] - row['ma10'])/row['ma10'], axis=1)
+    return pd.Series(sr, index=df.index)
+
+
+def lr_bias(df):
+    ma30 = df['close'].rolling(window=30).mean()
+    df['ma30'] = ma30
+    lr = df.apply(lambda row: (row['close'] - row['ma30'])/row['ma30'], axis=1)
+    return pd.Series(lr, index=df.index)
 
 
 def rsi(df):
@@ -48,3 +58,12 @@ def ma(df, timeperiod):
 
 def atr(df):
     return abstract.ATR(df, timeperiod=14)
+
+
+def bollingerBand(DF, n=20):
+    df = DF.copy()
+    df['sma'] = df.close.rolling(window=n).mean()
+    bb_up = df['sma'] + 2 * df.close.rolling(window=n).std(ddof=0)
+    bb_down = df['sma'] - 2 * df.close.rolling(window=n).std(ddof=0)
+    bb_width = bb_up - bb_down
+    return pd.DataFrame({"BB_up": bb_up, "BB_down": bb_down, "BB_width": bb_width}, index=df.index)
