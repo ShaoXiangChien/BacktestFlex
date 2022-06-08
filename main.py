@@ -500,26 +500,9 @@ def main():
 
     # Index generation
     st.header("Index Generation")
-    # st.write(required_ta)
-    # if st.checkbox("start to generate"):
-    #     for ta in required_ta + ['atr']:
-    #         try:
-    #             if 'ma' == ta[-2:]:
-    #                 output = eval('index.ma(btc_df, ' + ta[:-2] + ')')
-    #             else:
-    #                 output = eval('index.' + ta + '(btc_df)')
-    #             output.name = ta.lower() if type(output) == pd.core.series.Series else None
-    #             # 透過 merge 把輸出結果併入 df DataFrame
-    #             btc_df = pd.merge(btc_df, pd.DataFrame(output),
-    #                               left_on=btc_df.index, right_on=output.index)
-    #             btc_df = btc_df.set_index('key_0')
-    #         except Exception as e:
-    #             print(e)
-
-    #     btc_df.reset_index(inplace=True)
-    #     btc_df.rename(columns={'key_0': 'time'}, inplace=True)
-    btc_df = index_generate(btc_df)
-    st.dataframe(btc_df)
+    if st.checkbox('start to generate indicators'):
+        btc_df = index_generate(btc_df)
+        st.dataframe(btc_df)
 
     # simulation
     st.header("Simulation")
