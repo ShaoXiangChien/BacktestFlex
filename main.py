@@ -461,7 +461,7 @@ def main():
         "How many profit target you want to set?", 1, 10, step=1)
     st.write("Please start with the lowest target")
     profit_target = []
-    for i in range(num_of_portion):
+    for i in range(int(num_of_portion)):
         cols = st.columns(2)
         target = cols[0].number_input(
             f"Risk to Reward Ratio {i+1}", 1.0, 20.0, step=0.1, key=f"target {i}")
@@ -698,7 +698,7 @@ def main():
 
             st.subheader("result")
             bar = go.Scatter(x=result['time'],
-                            y=result['balance'], fill='tozeroy')
+                             y=result['balance'], fill='tozeroy')
             fig = go.Figure(data=bar)
             st.plotly_chart(fig)
 
@@ -740,80 +740,83 @@ def main():
             fig2.update_layout(height=400 + 200*len(indexes))
             fig2.update_layout(hovermode="x unified")
             fig2.add_trace(go.Candlestick(x=chart_data.index,
-                                        open=chart_data['open'],
-                                        high=chart_data['high'],
-                                        low=chart_data['low'],
-                                        close=chart_data['close'], name='market data'), row=1, col=1)
+                                          open=chart_data['open'],
+                                          high=chart_data['high'],
+                                          low=chart_data['low'],
+                                          close=chart_data['close'], name='market data'), row=1, col=1)
             fig2.add_trace(go.Bar(x=chart_data.index,
-                                y=chart_data['volume'], name='volume'
-                                ), row=3, col=1)
+                                  y=chart_data['volume'], name='volume'
+                                  ), row=3, col=1)
             for i, p in enumerate(mas):
                 fig2.add_trace(go.Scatter(x=chart_data.index,
-                                        y=chart_data[p],
-                                        opacity=0.7,
-                                        line=dict(
-                                            color=ma_colors[i], width=2),
-                                        name=p), row=1, col=1)
+                                          y=chart_data[p],
+                                          opacity=0.7,
+                                          line=dict(
+                                              color=ma_colors[i], width=2),
+                                          name=p), row=1, col=1)
             if 'bollingerBand' in indexes:
                 fig2.add_trace(go.Scatter(x=chart_data.index,
-                                        y=chart_data['BB_up'],
-                                        opacity=0.7,
-                                        line=dict(
-                                            color='gray', width=2),
-                                        name='BollingerBand Upper Bound'), row=1, col=1)
+                                          y=chart_data['BB_up'],
+                                          opacity=0.7,
+                                          line=dict(
+                                              color='gray', width=2),
+                                          name='BollingerBand Upper Bound'), row=1, col=1)
                 fig2.add_trace(go.Scatter(x=chart_data.index,
-                                        y=chart_data['BB_down'],
-                                        opacity=0.7,
-                                        line=dict(
-                                            color='gray', width=2),
-                                        name='BollingerBand Lower Bound'), row=1, col=1)
+                                          y=chart_data['BB_down'],
+                                          opacity=0.7,
+                                          line=dict(
+                                              color='gray', width=2),
+                                          name='BollingerBand Lower Bound'), row=1, col=1)
             fig2.add_trace(go.Scatter(x=record[(start_date < record.index) & (record.index < end_date)].index, y=record[(start_date < record.index) & (
                 record.index < end_date)].price, text=record.action, name='Action', mode='markers', marker={'color': 'black'}), row=1, col=1)
             for i, index in enumerate(indexes):
                 if index == 'macd':
                     fig2.add_trace(go.Bar(x=chart_data.index,
-                                        y=chart_data.macdhist,
-                                        marker_color=chart_data['color'],
-                                        name='macdhist'
-                                        ), row=i+4, col=1)
+                                          y=chart_data.macdhist,
+                                          marker_color=chart_data['color'],
+                                          name='macdhist'
+                                          ), row=i+4, col=1)
                     fig2.add_trace(go.Scatter(x=chart_data.index,
-                                            y=chart_data.macd,
-                                            line=dict(color='red', width=2),
-                                            name='macd'
-                                            ), row=i+4, col=1)
+                                              y=chart_data.macd,
+                                              line=dict(color='red', width=2),
+                                              name='macd'
+                                              ), row=i+4, col=1)
                     fig2.add_trace(go.Scatter(x=chart_data.index,
-                                            y=chart_data.macdsignal,
-                                            line=dict(color='black', width=2),
-                                            name='macdsignal'
-                                            ), row=i+4, col=1)
+                                              y=chart_data.macdsignal,
+                                              line=dict(
+                                                  color='black', width=2),
+                                              name='macdsignal'
+                                              ), row=i+4, col=1)
                 elif index == 'rsi':
                     fig2.add_trace(go.Scatter(x=chart_data.index,
-                                            y=chart_data.sma_rsi,
-                                            line=dict(color='red', width=2),
-                                            name='sma_rsi'
-                                            ), row=i+4, col=1)
+                                              y=chart_data.sma_rsi,
+                                              line=dict(color='red', width=2),
+                                              name='sma_rsi'
+                                              ), row=i+4, col=1)
                     fig2.add_trace(go.Scatter(x=chart_data.index,
-                                            y=chart_data.rsi,
-                                            line=dict(color='black', width=2),
-                                            name='rsi'
-                                            ), row=i+4, col=1)
+                                              y=chart_data.rsi,
+                                              line=dict(
+                                                  color='black', width=2),
+                                              name='rsi'
+                                              ), row=i+4, col=1)
                 elif index == 'obv':
                     fig2.add_trace(go.Scatter(x=chart_data.index,
-                                            y=chart_data.obv,
-                                            line=dict(color='red', width=2),
-                                            name='obv'
-                                            ), row=i+4, col=1)
+                                              y=chart_data.obv,
+                                              line=dict(color='red', width=2),
+                                              name='obv'
+                                              ), row=i+4, col=1)
                 elif index == 'n_macd':
                     fig2.add_trace(go.Scatter(x=chart_data.index,
-                                            y=chart_data.trigger,
-                                            line=dict(color='red', width=2),
-                                            name='n_macd'
-                                            ), row=i+4, col=1)
+                                              y=chart_data.trigger,
+                                              line=dict(color='red', width=2),
+                                              name='n_macd'
+                                              ), row=i+4, col=1)
                     fig2.add_trace(go.Scatter(x=chart_data.index,
-                                            y=chart_data.macNorm,
-                                            line=dict(color='black', width=2),
-                                            name='macNorm'
-                                            ), row=i+4, col=1)
+                                              y=chart_data.macNorm,
+                                              line=dict(
+                                                  color='black', width=2),
+                                              name='macNorm'
+                                              ), row=i+4, col=1)
             st.plotly_chart(fig2)
 
             st.subheader("record")
