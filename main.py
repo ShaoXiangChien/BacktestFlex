@@ -504,6 +504,7 @@ def main():
 
     # simulation
     st.header("Simulation")
+    record = pd.DataFrame()
     btc_df = btc_df.dropna()
     btc_df.index = range(btc_df.shape[0])
     num_of_data = st.number_input(
