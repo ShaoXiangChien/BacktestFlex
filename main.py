@@ -195,8 +195,8 @@ def cond_transform(cond):
     return op_str
 
 
-# @st.experimental_memo(suppress_st_warning=True)
-def simulation(btc_df, profit_target, buy_long_conditions, sell_short_conditions, leverage, percent_per_action):
+@st.cache(suppress_st_warning=True, allow_output_mutation=True)
+def simulation(btc_df, profit_target, buy_long_conditions, sell_short_conditions, leverage, percent_per_action, balance):
     position = {'price': 0, 'amount': 0, 'total_amount': 0, 'atr': 0}
     long_just_out = False
     short_just_out = False
@@ -209,187 +209,185 @@ def simulation(btc_df, profit_target, buy_long_conditions, sell_short_conditions
     record = pd.DataFrame()
     result = pd.DataFrame()
     btc_df = btc_df.dropna()
-    start_simulation = st.checkbox("Start Simulation")
-    if start_simulation:
-        for id, row in stqdm(list(btc_df.iloc[:20000].iterrows())):
-            # condition checks
-            idx = id
-            if id == 0:
-                continue
-            if balance <= 0 or balance >= 1e6:
-                break
-            buy_long_check = 0
-            for op in buy_long_conditions:
-                buy_long_check += 1 if eval(op) else 0
+    for id, row in stqdm(list(btc_df.iterrows())):
+        # condition checks
+        idx = id
+        if id == 0:
+            continue
+        # if balance <= 0 or balance >= 1e6:
+        #     break
+        buy_long_check = 0
+        for op in buy_long_conditions:
+            buy_long_check += 1 if eval(op) else 0
 
-            sell_short_check = 0
-            for op in sell_short_conditions:
-                sell_short_check += 1 if eval(op) else 0
+        sell_short_check = 0
+        for op in sell_short_conditions:
+            sell_short_check += 1 if eval(op) else 0
 
-            if row.close < row['13ma'] and long_just_out:
-                long_just_out = False
+        # if row.close < row['13ma'] and long_just_out:
+        #     long_just_out = False
 
-            if row.close > row['13ma'] and short_just_out:
-                short_just_out = False
+        # if row.close > row['13ma'] and short_just_out:
+        #     short_just_out = False
 
-            # 1. buy long
-            #
-            if buy_long_check == len(buy_long_conditions) and position['amount'] == 0 and not long_just_out:
-                u_amount = balance * leverage * percent_per_action
-                position['price'] = row.close
-                position['amount'] = u_amount / row.close
-                position['total_amount'] = u_amount / row.close
-                position['atr'] = row.atr
-                stop_loss = row.close - row['atr']
-                target = profit_target[0][0]
-                stop_profit = row.close + row['atr'] * target
-                record = record.append(
-                    {'time': row.time, 'price': row.close, 'cost': u_amount, 'profit': 0, 'action': 'buy long', 'range': f'{stop_loss} - {stop_profit}'}, ignore_index=True)
-                transaction_count += 1
+        # 1. buy long
+        # and not long_just_out
+        if buy_long_check == len(buy_long_conditions) and position['amount'] == 0:
+            u_amount = balance * leverage * percent_per_action
+            position['price'] = row.close
+            position['amount'] = u_amount / row.close
+            position['total_amount'] = u_amount / row.close
+            position['atr'] = row.atr
+            stop_loss = row.close - row['atr']
+            target = profit_target[0][0]
+            stop_profit = row.close + row['atr'] * target
+            record = record.append(
+                {'time': row.time, 'price': row.close, 'cost': u_amount, 'profit': 0, 'action': 'buy long', 'range': f'{stop_loss} - {stop_profit}'}, ignore_index=True)
+            transaction_count += 1
 
-            #
-            # 2. sell short
-            if sell_short_check == len(sell_short_conditions) and position['amount'] == 0 and not short_just_out:
-                u_amount = balance * percent_per_action
-                position['price'] = row.close
-                position['amount'] = (-1) * (u_amount / row.close)
-                position['total_amount'] = (-1) * (u_amount / row.close)
-                position['atr'] = row.atr
-                stop_loss = row.close + row['atr']
-                target = profit_target[0][0]
-                stop_profit = row.close - row['atr'] * target
-                record = record.append(
-                    {'time': row.time, 'price': row.close, 'cost': u_amount, 'profit': 0, 'action': 'sell short', 'range': f'{stop_profit} - {stop_loss}'}, ignore_index=True)
-                transaction_count += 1
+        # 2. sell short
+        # and not short_just_out
+        if sell_short_check == len(sell_short_conditions) and position['amount'] == 0:
+            u_amount = balance * percent_per_action
+            position['price'] = row.close
+            position['amount'] = (-1) * (u_amount / row.close)
+            position['total_amount'] = (-1) * (u_amount / row.close)
+            position['atr'] = row.atr
+            stop_loss = row.close + row['atr']
+            target = profit_target[0][0]
+            stop_profit = row.close - row['atr'] * target
+            record = record.append(
+                {'time': row.time, 'price': row.close, 'cost': u_amount, 'profit': 0, 'action': 'sell short', 'range': f'{stop_profit} - {stop_loss}'}, ignore_index=True)
+            transaction_count += 1
 
-            # 3. end position
-            if stop_loss != 0:
-                if position['amount'] > 0:
-                    if row.close <= stop_loss:
-                        delta = random.randint(-5, 5)
-                        price_diff = (stop_loss + delta) - position['price']
-                        balance += price_diff * position['amount']
-                        record = record.append(
-                            {'time': row.time, 'price': stop_loss + delta, 'cost': 0, 'profit': price_diff * position['amount'], 'action': 'long stop loss'}, ignore_index=True)
+        # 3. end position
+        if stop_loss != 0:
+            if position['amount'] > 0:
+                if row.close <= stop_loss:
+                    delta = random.randint(-5, 5)
+                    price_diff = (stop_loss + delta) - position['price']
+                    balance += price_diff * position['amount']
+                    record = record.append(
+                        {'time': row.time, 'price': stop_loss + delta, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'long stop loss'}, ignore_index=True)
+                    position['amount'] = 0
+                    position['price'] = 0
+                    stop_loss, stop_profit = 0, 0
+                    up_stack = profit_target.copy()
+                    down_stack = []
+                    loses += 1
+                    result = result.append(
+                        {'time': row.time, 'balance': balance}, ignore_index=True)
+                    long_just_out = True
+                    continue
+
+                if row.close >= stop_profit:
+                    delta = random.uniform(-3, 3)
+                    portion = 0
+                    if row.close > row.open:
+                        n = len(up_stack)
+                        for _ in range(n):
+                            if row.high >= position['price'] + up_stack[-1][0] * position['atr']:
+                                ratio, portion = up_stack.pop()
+                                down_stack.append((ratio, portion))
+                            else:
+                                break
+                        bid_price = row.high + delta
+                    else:
+                        n = len(down_stack)
+                        for _ in range(n):
+                            if row.low <= position['price'] + down_stack[-1][0] * position['atr']:
+                                ratio, portion = down_stack.pop()
+                                up_stack.append((ratio, portion))
+                            else:
+                                break
+                        bid_price = row.close + delta
+                    if portion == 0:
+                        continue
+                    price_diff = bid_price - position['price']
+                    amount = position['total_amount'] * portion
+                    if amount > position['amount']:
+                        amount = position['amount']
+                    profit = price_diff * amount
+                    balance += profit
+                    stop_loss = position['price']
+                    record = record.append(
+                        {'time': row.time, 'price': bid_price, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'long stop profit' if price_diff > 0 else 'long stop loss'}, ignore_index=True)
+                    position['amount'] -= amount
+                    if position['amount'] <= 0:
                         position['amount'] = 0
                         position['price'] = 0
                         stop_loss, stop_profit = 0, 0
                         up_stack = profit_target.copy()
                         down_stack = []
-                        loses += 1
-                        result = result.append(
-                            {'time': row.time, 'balance': balance}, ignore_index=True)
-                        long_just_out = True
-                        continue
+                        wins += 1
+                    result = result.append(
+                        {'time': row.time, 'balance': balance}, ignore_index=True)
+                    long_just_out = True
+                    continue
 
-                    if row.close >= stop_profit:
-                        delta = random.uniform(-3, 3)
-                        portion = 0
-                        if row.close > row.open:
-                            n = len(up_stack)
-                            for _ in range(n):
-                                if row.high >= position['price'] + up_stack[-1][0] * position['atr']:
-                                    ratio, portion = up_stack.pop()
-                                    down_stack.append((ratio, portion))
-                                else:
-                                    break
-                            bid_price = row.high + delta
-                        else:
-                            n = len(down_stack)
-                            for _ in range(n):
-                                if row.low <= position['price'] + down_stack[-1][0] * position['atr']:
-                                    ratio, portion = down_stack.pop()
-                                    up_stack.append((ratio, portion))
-                                else:
-                                    break
-                            bid_price = row.close + delta
-                        if portion == 0:
-                            continue
-                        price_diff = bid_price - position['price']
-                        amount = position['total_amount'] * portion
-                        if amount > position['amount']:
-                            amount = position['amount']
-                        profit = price_diff * amount
-                        balance += profit
-                        stop_loss = position['price']
-                        record = record.append(
-                            {'time': row.time, 'price': bid_price, 'cost': 0, 'profit': profit, 'action': 'long stop profit' if price_diff > 0 else 'long stop loss'}, ignore_index=True)
-                        position['amount'] -= amount
-                        if position['amount'] <= 0:
-                            position['amount'] = 0
-                            position['price'] = 0
-                            stop_loss, stop_profit = 0, 0
-                            up_stack = profit_target.copy()
-                            down_stack = []
-                            wins += 1
-                        result = result.append(
-                            {'time': row.time, 'balance': balance}, ignore_index=True)
-                        long_just_out = True
-                        continue
+            elif position['amount'] < 0:
+                if row.close >= stop_loss:
+                    delta = random.randint(-5, 5)
+                    price_diff = (stop_loss + delta) - position['price']
+                    balance += price_diff * position['amount']
+                    record = record.append(
+                        {'time': row.time, 'price': stop_loss + delta, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'short stop loss'}, ignore_index=True)
+                    position['amount'] = 0
+                    position['price'] = 0
+                    stop_loss, stop_profit = 0, 0
+                    loses += 1
+                    result = result.append(
+                        {'time': row.time, 'balance': balance}, ignore_index=True)
+                    short_just_out = True
+                    continue
 
-                elif position['amount'] < 0:
-                    if row.close >= stop_loss:
-                        delta = random.randint(-5, 5)
-                        price_diff = (stop_loss + delta) - position['price']
-                        balance += price_diff * position['amount']
-                        record = record.append(
-                            {'time': row.time, 'price': stop_loss + delta, 'cost': 0, 'profit': price_diff * position['amount'], 'action': 'short stop loss'}, ignore_index=True)
+                if row.close <= stop_profit:
+                    delta = random.uniform(-3, 3)
+                    portion = 0
+                    if row.close < row.open:
+                        n = len(down_stack)
+                        for _ in range(n):
+                            if row.low <= position['price'] - down_stack[-1][0] * position['atr']:
+                                ratio, portion = down_stack.pop()
+                                up_stack.append((ratio, portion))
+                            else:
+                                break
+                        bid_price = row.low + delta
+                    else:
+                        n = len(up_stack)
+                        for _ in range(n):
+                            if row.high <= position['price'] - up_stack[-1][0] * position['atr']:
+                                ratio, portion = up_stack.pop()
+                                down_stack.append((ratio, portion))
+                            else:
+                                break
+                        bid_price = row.close + delta
+                    if portion == 0:
+                        continue
+                    price_diff = bid_price - position['price']
+                    amount = position['total_amount'] * portion
+                    if amount > position['amount']:
+                        amount = position['amount']
+                    profit = price_diff * amount
+                    balance += profit
+                    stop_loss = position['price']
+                    record = record.append(
+                        {'time': row.time, 'price': bid_price, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'short stop profit' if price_diff < 0 else 'short stop loss'}, ignore_index=True)
+                    position['amount'] -= amount
+                    if position['amount'] <= 0:
                         position['amount'] = 0
                         position['price'] = 0
                         stop_loss, stop_profit = 0, 0
-                        loses += 1
-                        result = result.append(
-                            {'time': row.time, 'balance': balance}, ignore_index=True)
-                        short_just_out = True
-                        continue
+                        up_stack = profit_target.copy()
+                        down_stack = []
+                        wins += 1
+                    result = result.append(
+                        {'time': row.time, 'balance': balance}, ignore_index=True)
+                    short_just_out = True
+                    continue
 
-                    if row.close <= stop_profit:
-                        delta = random.uniform(-3, 3)
-                        portion = 0
-                        if row.close < row.open:
-                            n = len(down_stack)
-                            for _ in range(n):
-                                if row.low <= position['price'] - down_stack[-1][0] * position['atr']:
-                                    ratio, portion = down_stack.pop()
-                                    up_stack.append((ratio, portion))
-                                else:
-                                    break
-                            bid_price = row.low + delta
-                        else:
-                            n = len(up_stack)
-                            for _ in range(n):
-                                if row.high <= position['price'] - up_stack[-1][0] * position['atr']:
-                                    ratio, portion = up_stack.pop()
-                                    down_stack.append((ratio, portion))
-                                else:
-                                    break
-                            bid_price = row.close + delta
-                        if portion == 0:
-                            continue
-                        price_diff = bid_price - position['price']
-                        amount = position['total_amount'] * portion
-                        if amount > position['amount']:
-                            amount = position['amount']
-                        profit = price_diff * amount
-                        balance += profit
-                        stop_loss = position['price']
-                        record = record.append(
-                            {'time': row.time, 'price': bid_price, 'cost': 0, 'profit': profit, 'action': 'short stop profit' if price_diff < 0 else 'short stop loss'}, ignore_index=True)
-                        position['amount'] -= amount
-                        if position['amount'] <= 0:
-                            position['amount'] = 0
-                            position['price'] = 0
-                            stop_loss, stop_profit = 0, 0
-                            up_stack = profit_target.copy()
-                            down_stack = []
-                            wins += 1
-                        result = result.append(
-                            {'time': row.time, 'balance': balance}, ignore_index=True)
-                        short_just_out = True
-                        continue
-
-        st.success("Simulation Complete")
-        return record, result, True
+    st.success("Simulation Complete")
+    return record, result, transaction_count, wins, loses
 
 
 @st.cache(suppress_st_warning=True)
@@ -506,333 +504,147 @@ def main():
 
     # simulation
     st.header("Simulation")
-    position = {'price': 0, 'amount': 0, 'total_amount': 0, 'atr': 0}
-    long_just_out = False
-    short_just_out = False
-    stop_loss, stop_profit = 0, 0
-    transaction_count = 0
-    wins = 0
-    loses = 0
-    up_stack = profit_target.copy()
-    down_stack = []
-    record = pd.DataFrame()
-    result = pd.DataFrame()
     btc_df = btc_df.dropna()
     btc_df.index = range(btc_df.shape[0])
-    start_simulation = st.checkbox("Start Simulation")
-    if start_simulation:
-        for id, row in stqdm(list(btc_df.iloc[:5040].iterrows())):
-            # condition checks
-            idx = id
-            if id == 0:
-                continue
-            # if balance <= 0 or balance >= 1e6:
-            #     break
-            buy_long_check = 0
-            for op in buy_long_conditions:
-                buy_long_check += 1 if eval(op) else 0
+    num_of_data = st.number_input(
+        "Number of data to test on", 100, btc_df.shape[0], step=100)
+    btc_df = btc_df.iloc[:num_of_data]
+    if st.checkbox("Start Simulation"):
+        record, result, transaction_count, wins, loses = simulation(
+            btc_df, profit_target, buy_long_conditions, sell_short_conditions, leverage, percent_per_action, balance)
+    if record.shape[0] != 0:
+        record.index = record.time
 
-            sell_short_check = 0
-            for op in sell_short_conditions:
-                sell_short_check += 1 if eval(op) else 0
+        st.subheader("result")
+        bar = go.Scatter(x=result['time'],
+                         y=result['balance'], fill='tozeroy')
+        fig = go.Figure(data=bar)
+        st.plotly_chart(fig)
 
-            # if row.close < row['13ma'] and long_just_out:
-            #     long_just_out = False
+        st.subheader("Profit Distribution")
+        record[record.profit > 0.0].profit.plot.kde()
+        plt.show()
+        st.pyplot()
 
-            # if row.close > row['13ma'] and short_just_out:
-            #     short_just_out = False
+        st.subheader("Loss Distribution")
+        record[record.profit < 0.0].profit.plot.kde()
+        plt.show()
+        st.pyplot()
 
-            # 1. buy long
-            # and not long_just_out
-            if buy_long_check == len(buy_long_conditions) and position['amount'] == 0:
-                u_amount = balance * leverage * percent_per_action
-                position['price'] = row.close
-                position['amount'] = u_amount / row.close
-                position['total_amount'] = u_amount / row.close
-                position['atr'] = row.atr
-                stop_loss = row.close - row['atr']
-                target = profit_target[0][0]
-                stop_profit = row.close + row['atr'] * target
-                record = record.append(
-                    {'time': row.time, 'price': row.close, 'cost': u_amount, 'profit': 0, 'action': 'buy long', 'range': f'{stop_loss} - {stop_profit}'}, ignore_index=True)
-                transaction_count += 1
+        st.subheader("Simulation Plot")
+        start_date = dt.datetime.combine(st.date_input(
+            '起始日期', btc_df.iloc[2000].time.date()), dt.datetime.min.time())
+        end_date = dt.datetime.combine(st.date_input(
+            '結束日期', btc_df.iloc[2001].time.date()), dt.datetime.max.time())
 
-            # 2. sell short
-            # and not short_just_out
-            if sell_short_check == len(sell_short_conditions) and position['amount'] == 0:
-                u_amount = balance * percent_per_action
-                position['price'] = row.close
-                position['amount'] = (-1) * (u_amount / row.close)
-                position['total_amount'] = (-1) * (u_amount / row.close)
-                position['atr'] = row.atr
-                stop_loss = row.close + row['atr']
-                target = profit_target[0][0]
-                stop_profit = row.close - row['atr'] * target
-                record = record.append(
-                    {'time': row.time, 'price': row.close, 'cost': u_amount, 'profit': 0, 'action': 'sell short', 'range': f'{stop_profit} - {stop_loss}'}, ignore_index=True)
-                transaction_count += 1
+        if 'macdhist' in list(btc_df.columns):
+            btc_df["color"] = np.where(
+                btc_df["macdhist"] < 0, 'red', 'green')
+        btc_df.index = btc_df.time
+        chart_data = btc_df[(start_date < btc_df['time'])
+                            & (btc_df['time'] < end_date)].copy()
 
-            # 3. end position
-            if stop_loss != 0:
-                if position['amount'] > 0:
-                    if row.close <= stop_loss:
-                        delta = random.randint(-5, 5)
-                        price_diff = (stop_loss + delta) - position['price']
-                        balance += price_diff * position['amount']
-                        record = record.append(
-                            {'time': row.time, 'price': stop_loss + delta, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'long stop loss'}, ignore_index=True)
-                        position['amount'] = 0
-                        position['price'] = 0
-                        stop_loss, stop_profit = 0, 0
-                        up_stack = profit_target.copy()
-                        down_stack = []
-                        loses += 1
-                        result = result.append(
-                            {'time': row.time, 'balance': balance}, ignore_index=True)
-                        long_just_out = True
-                        continue
-
-                    if row.close >= stop_profit:
-                        delta = random.uniform(-3, 3)
-                        portion = 0
-                        if row.close > row.open:
-                            n = len(up_stack)
-                            for _ in range(n):
-                                if row.high >= position['price'] + up_stack[-1][0] * position['atr']:
-                                    ratio, portion = up_stack.pop()
-                                    down_stack.append((ratio, portion))
-                                else:
-                                    break
-                            bid_price = row.high + delta
-                        else:
-                            n = len(down_stack)
-                            for _ in range(n):
-                                if row.low <= position['price'] + down_stack[-1][0] * position['atr']:
-                                    ratio, portion = down_stack.pop()
-                                    up_stack.append((ratio, portion))
-                                else:
-                                    break
-                            bid_price = row.close + delta
-                        if portion == 0:
-                            continue
-                        price_diff = bid_price - position['price']
-                        amount = position['total_amount'] * portion
-                        if amount > position['amount']:
-                            amount = position['amount']
-                        profit = price_diff * amount
-                        balance += profit
-                        stop_loss = position['price']
-                        record = record.append(
-                            {'time': row.time, 'price': bid_price, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'long stop profit' if price_diff > 0 else 'long stop loss'}, ignore_index=True)
-                        position['amount'] -= amount
-                        if position['amount'] <= 0:
-                            position['amount'] = 0
-                            position['price'] = 0
-                            stop_loss, stop_profit = 0, 0
-                            up_stack = profit_target.copy()
-                            down_stack = []
-                            wins += 1
-                        result = result.append(
-                            {'time': row.time, 'balance': balance}, ignore_index=True)
-                        long_just_out = True
-                        continue
-
-                elif position['amount'] < 0:
-                    if row.close >= stop_loss:
-                        delta = random.randint(-5, 5)
-                        price_diff = (stop_loss + delta) - position['price']
-                        balance += price_diff * position['amount']
-                        record = record.append(
-                            {'time': row.time, 'price': stop_loss + delta, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'short stop loss'}, ignore_index=True)
-                        position['amount'] = 0
-                        position['price'] = 0
-                        stop_loss, stop_profit = 0, 0
-                        loses += 1
-                        result = result.append(
-                            {'time': row.time, 'balance': balance}, ignore_index=True)
-                        short_just_out = True
-                        continue
-
-                    if row.close <= stop_profit:
-                        delta = random.uniform(-3, 3)
-                        portion = 0
-                        if row.close < row.open:
-                            n = len(down_stack)
-                            for _ in range(n):
-                                if row.low <= position['price'] - down_stack[-1][0] * position['atr']:
-                                    ratio, portion = down_stack.pop()
-                                    up_stack.append((ratio, portion))
-                                else:
-                                    break
-                            bid_price = row.low + delta
-                        else:
-                            n = len(up_stack)
-                            for _ in range(n):
-                                if row.high <= position['price'] - up_stack[-1][0] * position['atr']:
-                                    ratio, portion = up_stack.pop()
-                                    down_stack.append((ratio, portion))
-                                else:
-                                    break
-                            bid_price = row.close + delta
-                        if portion == 0:
-                            continue
-                        price_diff = bid_price - position['price']
-                        amount = position['total_amount'] * portion
-                        if amount > position['amount']:
-                            amount = position['amount']
-                        profit = price_diff * amount
-                        balance += profit
-                        stop_loss = position['price']
-                        record = record.append(
-                            {'time': row.time, 'price': bid_price, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'short stop profit' if price_diff < 0 else 'short stop loss'}, ignore_index=True)
-                        position['amount'] -= amount
-                        if position['amount'] <= 0:
-                            position['amount'] = 0
-                            position['price'] = 0
-                            stop_loss, stop_profit = 0, 0
-                            up_stack = profit_target.copy()
-                            down_stack = []
-                            wins += 1
-                        result = result.append(
-                            {'time': row.time, 'balance': balance}, ignore_index=True)
-                        short_just_out = True
-                        continue
-        if record.shape[0] != 0:
-            st.success("Simulation Complete")
-            record.index = record.time
-
-            st.subheader("result")
-            bar = go.Scatter(x=result['time'],
-                             y=result['balance'], fill='tozeroy')
-            fig = go.Figure(data=bar)
-            st.plotly_chart(fig)
-
-            st.subheader("Profit Distribution")
-            record[record.profit > 0.0].profit.plot.kde()
-            plt.show()
-            st.pyplot()
-
-            st.subheader("Loss Distribution")
-            record[record.profit < 0.0].profit.plot.kde()
-            plt.show()
-            st.pyplot()
-
-            st.subheader("Simulation Plot")
-            start_date = dt.datetime.combine(st.date_input(
-                '起始日期', btc_df.iloc[2000].time.date()), dt.datetime.min.time())
-            end_date = dt.datetime.combine(st.date_input(
-                '結束日期', btc_df.iloc[2001].time.date()), dt.datetime.max.time())
-
-            if 'macdhist' in list(btc_df.columns):
-                btc_df["color"] = np.where(
-                    btc_df["macdhist"] < 0, 'red', 'green')
-            btc_df.index = btc_df.time
-            chart_data = btc_df[(start_date < btc_df['time'])
-                                & (btc_df['time'] < end_date)].copy()
-
-            mas = []
-            indexes = []
-            n = len(required_ta)
-            for ta in required_ta:
-                if ta.endswith('ma'):
-                    mas.append(ta)
-                    n -= 1
-                elif ta not in ['low', 'high', 'open', 'close']:
-                    indexes.append(ta)
-            st.write(indexes)
-            st.write(mas)
-            fig2 = make_subplots(rows=n+3, cols=1, shared_xaxes=True)
-            fig2.update_layout(height=400 + 200*len(indexes))
-            fig2.update_layout(hovermode="x unified")
-            fig2.add_trace(go.Candlestick(x=chart_data.index,
-                                          open=chart_data['open'],
-                                          high=chart_data['high'],
-                                          low=chart_data['low'],
-                                          close=chart_data['close'], name='market data'), row=1, col=1)
-            fig2.add_trace(go.Bar(x=chart_data.index,
-                                  y=chart_data['volume'], name='volume'
-                                  ), row=3, col=1)
-            for i, p in enumerate(mas):
+        mas = []
+        indexes = []
+        n = len(required_ta)
+        for ta in required_ta:
+            if ta.endswith('ma'):
+                mas.append(ta)
+                n -= 1
+            elif ta not in ['low', 'high', 'open', 'close']:
+                indexes.append(ta)
+        fig2 = make_subplots(rows=n+3, cols=1, shared_xaxes=True)
+        fig2.update_layout(height=400 + 200*len(indexes))
+        fig2.update_layout(hovermode="x unified")
+        fig2.add_trace(go.Candlestick(x=chart_data.index,
+                                      open=chart_data['open'],
+                                      high=chart_data['high'],
+                                      low=chart_data['low'],
+                                      close=chart_data['close'], name='market data'), row=1, col=1)
+        fig2.add_trace(go.Bar(x=chart_data.index,
+                              y=chart_data['volume'], name='volume'
+                              ), row=3, col=1)
+        for i, p in enumerate(mas):
+            fig2.add_trace(go.Scatter(x=chart_data.index,
+                                      y=chart_data[p],
+                                      opacity=0.7,
+                                      line=dict(
+                                          color=ma_colors[i], width=2),
+                                      name=p), row=1, col=1)
+        if 'bollingerBand' in indexes:
+            fig2.add_trace(go.Scatter(x=chart_data.index,
+                                      y=chart_data['BB_up'],
+                                      opacity=0.7,
+                                      line=dict(
+                                          color='gray', width=2),
+                                      name='BollingerBand Upper Bound'), row=1, col=1)
+            fig2.add_trace(go.Scatter(x=chart_data.index,
+                                      y=chart_data['BB_down'],
+                                      opacity=0.7,
+                                      line=dict(
+                                          color='gray', width=2),
+                                      name='BollingerBand Lower Bound'), row=1, col=1)
+        fig2.add_trace(go.Scatter(x=record[(start_date < record.index) & (record.index < end_date)].index, y=record[(start_date < record.index) & (
+            record.index < end_date)].price, text=record.action, name='Action', mode='markers', marker={'color': 'black'}), row=1, col=1)
+        for i, index in enumerate(indexes):
+            if index == 'macd':
+                fig2.add_trace(go.Bar(x=chart_data.index,
+                                      y=chart_data.macdhist,
+                                      marker_color=chart_data['color'],
+                                      name='macdhist'
+                                      ), row=i+4, col=1)
                 fig2.add_trace(go.Scatter(x=chart_data.index,
-                                          y=chart_data[p],
-                                          opacity=0.7,
-                                          line=dict(
-                                              color=ma_colors[i], width=2),
-                                          name=p), row=1, col=1)
-            if 'bollingerBand' in indexes:
-                fig2.add_trace(go.Scatter(x=chart_data.index,
-                                          y=chart_data['BB_up'],
-                                          opacity=0.7,
-                                          line=dict(
-                                              color='gray', width=2),
-                                          name='BollingerBand Upper Bound'), row=1, col=1)
-                fig2.add_trace(go.Scatter(x=chart_data.index,
-                                          y=chart_data['BB_down'],
-                                          opacity=0.7,
-                                          line=dict(
-                                              color='gray', width=2),
-                                          name='BollingerBand Lower Bound'), row=1, col=1)
-            fig2.add_trace(go.Scatter(x=record[(start_date < record.index) & (record.index < end_date)].index, y=record[(start_date < record.index) & (
-                record.index < end_date)].price, text=record.action, name='Action', mode='markers', marker={'color': 'black'}), row=1, col=1)
-            for i, index in enumerate(indexes):
-                if index == 'macd':
-                    fig2.add_trace(go.Bar(x=chart_data.index,
-                                          y=chart_data.macdhist,
-                                          marker_color=chart_data['color'],
-                                          name='macdhist'
+                                          y=chart_data.macd,
+                                          line=dict(color='red', width=2),
+                                          name='macd'
                                           ), row=i+4, col=1)
-                    fig2.add_trace(go.Scatter(x=chart_data.index,
-                                              y=chart_data.macd,
-                                              line=dict(color='red', width=2),
-                                              name='macd'
-                                              ), row=i+4, col=1)
-                    fig2.add_trace(go.Scatter(x=chart_data.index,
-                                              y=chart_data.macdsignal,
-                                              line=dict(
-                                                  color='black', width=2),
-                                              name='macdsignal'
-                                              ), row=i+4, col=1)
-                elif index == 'rsi':
-                    fig2.add_trace(go.Scatter(x=chart_data.index,
-                                              y=chart_data.sma_rsi,
-                                              line=dict(color='red', width=2),
-                                              name='sma_rsi'
-                                              ), row=i+4, col=1)
-                    fig2.add_trace(go.Scatter(x=chart_data.index,
-                                              y=chart_data.rsi,
-                                              line=dict(
-                                                  color='black', width=2),
-                                              name='rsi'
-                                              ), row=i+4, col=1)
-                elif index == 'obv':
-                    fig2.add_trace(go.Scatter(x=chart_data.index,
-                                              y=chart_data.obv,
-                                              line=dict(color='red', width=2),
-                                              name='obv'
-                                              ), row=i+4, col=1)
-                elif index == 'n_macd':
-                    fig2.add_trace(go.Scatter(x=chart_data.index,
-                                              y=chart_data.trigger,
-                                              line=dict(color='red', width=2),
-                                              name='n_macd'
-                                              ), row=i+4, col=1)
-                    fig2.add_trace(go.Scatter(x=chart_data.index,
-                                              y=chart_data.macNorm,
-                                              line=dict(
-                                                  color='black', width=2),
-                                              name='macNorm'
-                                              ), row=i+4, col=1)
-            st.plotly_chart(fig2)
+                fig2.add_trace(go.Scatter(x=chart_data.index,
+                                          y=chart_data.macdsignal,
+                                          line=dict(
+                                              color='black', width=2),
+                                          name='macdsignal'
+                                          ), row=i+4, col=1)
+            elif index == 'rsi':
+                fig2.add_trace(go.Scatter(x=chart_data.index,
+                                          y=chart_data.sma_rsi,
+                                          line=dict(color='red', width=2),
+                                          name='sma_rsi'
+                                          ), row=i+4, col=1)
+                fig2.add_trace(go.Scatter(x=chart_data.index,
+                                          y=chart_data.rsi,
+                                          line=dict(
+                                              color='black', width=2),
+                                          name='rsi'
+                                          ), row=i+4, col=1)
+            elif index == 'obv':
+                fig2.add_trace(go.Scatter(x=chart_data.index,
+                                          y=chart_data.obv,
+                                          line=dict(color='red', width=2),
+                                          name='obv'
+                                          ), row=i+4, col=1)
+            elif index == 'n_macd':
+                fig2.add_trace(go.Scatter(x=chart_data.index,
+                                          y=chart_data.trigger,
+                                          line=dict(color='red', width=2),
+                                          name='n_macd'
+                                          ), row=i+4, col=1)
+                fig2.add_trace(go.Scatter(x=chart_data.index,
+                                          y=chart_data.macNorm,
+                                          line=dict(
+                                              color='black', width=2),
+                                          name='macNorm'
+                                          ), row=i+4, col=1)
+        st.plotly_chart(fig2)
 
-            st.subheader("record")
-            st.dataframe(record)
-            btc_df.to_csv("./df_w_index.csv", index=False)
-            result.to_csv("./sim_result.csv", index=False)
-            record.to_csv("./sim_record.csv", index=False)
-        if transaction_count != 0:
-            st.write(
-                f"transaction: {transaction_count}, wins: {wins}, loses: {loses}")
-            st.write(f"winning rate {float(wins/transaction_count)}")
+        st.subheader("record")
+        st.dataframe(record)
+        btc_df.to_csv("./df_w_index.csv", index=False)
+        result.to_csv("./sim_result.csv", index=False)
+        record.to_csv("./sim_record.csv", index=False)
+    if transaction_count != 0:
+        st.write(
+            f"transaction: {transaction_count}, wins: {wins}, loses: {loses}")
+        st.write(f"winning rate {float(wins/transaction_count)}")
 
 
 if __name__ == '__main__':
