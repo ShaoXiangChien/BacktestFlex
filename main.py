@@ -5,6 +5,7 @@ import random
 from plotly.subplots import make_subplots
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
+import plotly.express as px
 import matplotlib.pyplot as plt
 import datetime as dt
 import numpy as np
@@ -523,15 +524,24 @@ def main():
         fig = go.Figure(data=bar)
         st.plotly_chart(fig)
 
-        st.subheader("Profit Distribution")
-        record[record.profit > 0.0].profit.plot.kde()
-        plt.show()
-        st.pyplot()
+        profit_df = record[record.profit != 0].copy()
+        profit_df['frequency'] = np.ones(profit_df.shape[0])
+        profit_df['sign'] = profit_df.profit.apply(
+            lambda x: 'profit' if x > 0 else 'loss')
+        st.subheader("Profit and Loss Distribution")
+        profit_df['profit'] = profit_df['profit'].apply(lambda x: abs(x))
+        profit_plot = px.histogram(profit_df, x="profit", y="frequency", color="sign",
+                                   marginal="box",  # or violin, rug
+                                   hover_data=profit_df.columns)
+        st.plotly_chart(profit_plot)
+        # record[record.profit > 0.0].profit.plot.kde()
+        # plt.show()
+        # st.pyplot()
 
-        st.subheader("Loss Distribution")
-        record[record.profit < 0.0].profit.plot.kde()
-        plt.show()
-        st.pyplot()
+        # st.subheader("Loss Distribution")
+        # record[record.profit < 0.0].profit.plot.kde()
+        # plt.show()
+        # st.pyplot()
 
         st.subheader("Simulation Plot")
         start_date = dt.datetime.combine(st.date_input(
