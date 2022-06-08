@@ -692,139 +692,139 @@ def main():
                             {'time': row.time, 'balance': balance}, ignore_index=True)
                         short_just_out = True
                         continue
+        if record.shape[0] != 0:
+            st.success("Simulation Complete")
+            record.index = record.time
 
-        st.success("Simulation Complete")
-        record.index = record.time
+            st.subheader("result")
+            bar = go.Scatter(x=result['time'],
+                            y=result['balance'], fill='tozeroy')
+            fig = go.Figure(data=bar)
+            st.plotly_chart(fig)
 
-        st.subheader("result")
-        bar = go.Scatter(x=result['time'],
-                         y=result['balance'], fill='tozeroy')
-        fig = go.Figure(data=bar)
-        st.plotly_chart(fig)
+            st.subheader("Profit Distribution")
+            record[record.profit > 0.0].profit.plot.kde()
+            plt.show()
+            st.pyplot()
 
-        st.subheader("Profit Distribution")
-        record[record.profit > 0.0].profit.plot.kde()
-        plt.show()
-        st.pyplot()
+            st.subheader("Loss Distribution")
+            record[record.profit < 0.0].profit.plot.kde()
+            plt.show()
+            st.pyplot()
 
-        st.subheader("Loss Distribution")
-        record[record.profit < 0.0].profit.plot.kde()
-        plt.show()
-        st.pyplot()
+            st.subheader("Simulation Plot")
+            start_date = dt.datetime.combine(st.date_input(
+                '起始日期', btc_df.iloc[2000].time.date()), dt.datetime.min.time())
+            end_date = dt.datetime.combine(st.date_input(
+                '結束日期', btc_df.iloc[2001].time.date()), dt.datetime.max.time())
 
-        st.subheader("Simulation Plot")
-        start_date = dt.datetime.combine(st.date_input(
-            '起始日期', btc_df.iloc[2000].time.date()), dt.datetime.min.time())
-        end_date = dt.datetime.combine(st.date_input(
-            '結束日期', btc_df.iloc[2001].time.date()), dt.datetime.max.time())
+            if 'macdhist' in list(btc_df.columns):
+                btc_df["color"] = np.where(
+                    btc_df["macdhist"] < 0, 'red', 'green')
+            btc_df.index = btc_df.time
+            chart_data = btc_df[(start_date < btc_df['time'])
+                                & (btc_df['time'] < end_date)].copy()
 
-        if 'macdhist' in list(btc_df.columns):
-            btc_df["color"] = np.where(
-                btc_df["macdhist"] < 0, 'red', 'green')
-        btc_df.index = btc_df.time
-        chart_data = btc_df[(start_date < btc_df['time'])
-                            & (btc_df['time'] < end_date)].copy()
-
-        mas = []
-        indexes = []
-        n = len(required_ta)
-        for ta in required_ta:
-            if ta.endswith('ma'):
-                mas.append(ta)
-                n -= 1
-            elif ta not in ['low', 'high', 'open', 'close']:
-                indexes.append(ta)
-        st.write(indexes)
-        st.write(mas)
-        fig2 = make_subplots(rows=n+3, cols=1, shared_xaxes=True)
-        fig2.update_layout(height=400 + 200*len(indexes))
-        fig2.update_layout(hovermode="x unified")
-        fig2.add_trace(go.Candlestick(x=chart_data.index,
-                                      open=chart_data['open'],
-                                      high=chart_data['high'],
-                                      low=chart_data['low'],
-                                      close=chart_data['close'], name='market data'), row=1, col=1)
-        fig2.add_trace(go.Bar(x=chart_data.index,
-                              y=chart_data['volume'], name='volume'
-                              ), row=3, col=1)
-        for i, p in enumerate(mas):
-            fig2.add_trace(go.Scatter(x=chart_data.index,
-                                      y=chart_data[p],
-                                      opacity=0.7,
-                                      line=dict(
-                                          color=ma_colors[i], width=2),
-                                      name=p), row=1, col=1)
-        if 'bollingerBand' in indexes:
-            fig2.add_trace(go.Scatter(x=chart_data.index,
-                                      y=chart_data['BB_up'],
-                                      opacity=0.7,
-                                      line=dict(
-                                          color='gray', width=2),
-                                      name='BollingerBand Upper Bound'), row=1, col=1)
-            fig2.add_trace(go.Scatter(x=chart_data.index,
-                                      y=chart_data['BB_down'],
-                                      opacity=0.7,
-                                      line=dict(
-                                          color='gray', width=2),
-                                      name='BollingerBand Lower Bound'), row=1, col=1)
-        fig2.add_trace(go.Scatter(x=record[(start_date < record.index) & (record.index < end_date)].index, y=record[(start_date < record.index) & (
-            record.index < end_date)].price, text=record.action, name='Action', mode='markers', marker={'color': 'black'}), row=1, col=1)
-        for i, index in enumerate(indexes):
-            if index == 'macd':
-                fig2.add_trace(go.Bar(x=chart_data.index,
-                                      y=chart_data.macdhist,
-                                      marker_color=chart_data['color'],
-                                      name='macdhist'
-                                      ), row=i+4, col=1)
+            mas = []
+            indexes = []
+            n = len(required_ta)
+            for ta in required_ta:
+                if ta.endswith('ma'):
+                    mas.append(ta)
+                    n -= 1
+                elif ta not in ['low', 'high', 'open', 'close']:
+                    indexes.append(ta)
+            st.write(indexes)
+            st.write(mas)
+            fig2 = make_subplots(rows=n+3, cols=1, shared_xaxes=True)
+            fig2.update_layout(height=400 + 200*len(indexes))
+            fig2.update_layout(hovermode="x unified")
+            fig2.add_trace(go.Candlestick(x=chart_data.index,
+                                        open=chart_data['open'],
+                                        high=chart_data['high'],
+                                        low=chart_data['low'],
+                                        close=chart_data['close'], name='market data'), row=1, col=1)
+            fig2.add_trace(go.Bar(x=chart_data.index,
+                                y=chart_data['volume'], name='volume'
+                                ), row=3, col=1)
+            for i, p in enumerate(mas):
                 fig2.add_trace(go.Scatter(x=chart_data.index,
-                                          y=chart_data.macd,
-                                          line=dict(color='red', width=2),
-                                          name='macd'
-                                          ), row=i+4, col=1)
+                                        y=chart_data[p],
+                                        opacity=0.7,
+                                        line=dict(
+                                            color=ma_colors[i], width=2),
+                                        name=p), row=1, col=1)
+            if 'bollingerBand' in indexes:
                 fig2.add_trace(go.Scatter(x=chart_data.index,
-                                          y=chart_data.macdsignal,
-                                          line=dict(color='black', width=2),
-                                          name='macdsignal'
-                                          ), row=i+4, col=1)
-            elif index == 'rsi':
+                                        y=chart_data['BB_up'],
+                                        opacity=0.7,
+                                        line=dict(
+                                            color='gray', width=2),
+                                        name='BollingerBand Upper Bound'), row=1, col=1)
                 fig2.add_trace(go.Scatter(x=chart_data.index,
-                                          y=chart_data.sma_rsi,
-                                          line=dict(color='red', width=2),
-                                          name='sma_rsi'
-                                          ), row=i+4, col=1)
-                fig2.add_trace(go.Scatter(x=chart_data.index,
-                                          y=chart_data.rsi,
-                                          line=dict(color='black', width=2),
-                                          name='rsi'
-                                          ), row=i+4, col=1)
-            elif index == 'obv':
-                fig2.add_trace(go.Scatter(x=chart_data.index,
-                                          y=chart_data.obv,
-                                          line=dict(color='red', width=2),
-                                          name='obv'
-                                          ), row=i+4, col=1)
-            elif index == 'n_macd':
-                fig2.add_trace(go.Scatter(x=chart_data.index,
-                                          y=chart_data.trigger,
-                                          line=dict(color='red', width=2),
-                                          name='n_macd'
-                                          ), row=i+4, col=1)
-                fig2.add_trace(go.Scatter(x=chart_data.index,
-                                          y=chart_data.macNorm,
-                                          line=dict(color='black', width=2),
-                                          name='macNorm'
-                                          ), row=i+4, col=1)
-        st.plotly_chart(fig2)
+                                        y=chart_data['BB_down'],
+                                        opacity=0.7,
+                                        line=dict(
+                                            color='gray', width=2),
+                                        name='BollingerBand Lower Bound'), row=1, col=1)
+            fig2.add_trace(go.Scatter(x=record[(start_date < record.index) & (record.index < end_date)].index, y=record[(start_date < record.index) & (
+                record.index < end_date)].price, text=record.action, name='Action', mode='markers', marker={'color': 'black'}), row=1, col=1)
+            for i, index in enumerate(indexes):
+                if index == 'macd':
+                    fig2.add_trace(go.Bar(x=chart_data.index,
+                                        y=chart_data.macdhist,
+                                        marker_color=chart_data['color'],
+                                        name='macdhist'
+                                        ), row=i+4, col=1)
+                    fig2.add_trace(go.Scatter(x=chart_data.index,
+                                            y=chart_data.macd,
+                                            line=dict(color='red', width=2),
+                                            name='macd'
+                                            ), row=i+4, col=1)
+                    fig2.add_trace(go.Scatter(x=chart_data.index,
+                                            y=chart_data.macdsignal,
+                                            line=dict(color='black', width=2),
+                                            name='macdsignal'
+                                            ), row=i+4, col=1)
+                elif index == 'rsi':
+                    fig2.add_trace(go.Scatter(x=chart_data.index,
+                                            y=chart_data.sma_rsi,
+                                            line=dict(color='red', width=2),
+                                            name='sma_rsi'
+                                            ), row=i+4, col=1)
+                    fig2.add_trace(go.Scatter(x=chart_data.index,
+                                            y=chart_data.rsi,
+                                            line=dict(color='black', width=2),
+                                            name='rsi'
+                                            ), row=i+4, col=1)
+                elif index == 'obv':
+                    fig2.add_trace(go.Scatter(x=chart_data.index,
+                                            y=chart_data.obv,
+                                            line=dict(color='red', width=2),
+                                            name='obv'
+                                            ), row=i+4, col=1)
+                elif index == 'n_macd':
+                    fig2.add_trace(go.Scatter(x=chart_data.index,
+                                            y=chart_data.trigger,
+                                            line=dict(color='red', width=2),
+                                            name='n_macd'
+                                            ), row=i+4, col=1)
+                    fig2.add_trace(go.Scatter(x=chart_data.index,
+                                            y=chart_data.macNorm,
+                                            line=dict(color='black', width=2),
+                                            name='macNorm'
+                                            ), row=i+4, col=1)
+            st.plotly_chart(fig2)
 
-        st.subheader("record")
-        st.dataframe(record)
-        btc_df.to_csv("./df_w_index.csv", index=False)
-        result.to_csv("./sim_result.csv", index=False)
-        record.to_csv("./sim_record.csv", index=False)
-    if transaction_count != 0:
-        st.write(
-            f"transaction: {transaction_count}, wins: {wins}, loses: {loses}")
-        st.write(f"winning rate {float(wins/transaction_count)}")
+            st.subheader("record")
+            st.dataframe(record)
+            btc_df.to_csv("./df_w_index.csv", index=False)
+            result.to_csv("./sim_result.csv", index=False)
+            record.to_csv("./sim_record.csv", index=False)
+        if transaction_count != 0:
+            st.write(
+                f"transaction: {transaction_count}, wins: {wins}, loses: {loses}")
+            st.write(f"winning rate {float(wins/transaction_count)}")
 
 
 if __name__ == '__main__':
