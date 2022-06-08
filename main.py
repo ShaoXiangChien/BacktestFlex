@@ -509,7 +509,7 @@ def main():
     btc_df.index = range(btc_df.shape[0])
     num_of_data = st.number_input(
         "Number of data to test on", 100, btc_df.shape[0], step=100)
-    btc_df = btc_df.iloc[:num_of_data]
+    btc_df = btc_df.iloc[:int(num_of_data)]
     if st.checkbox("Start Simulation"):
         record, result, transaction_count, wins, loses = simulation(
             btc_df, profit_target, buy_long_conditions, sell_short_conditions, leverage, percent_per_action, balance)
