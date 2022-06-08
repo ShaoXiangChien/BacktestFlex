@@ -17,8 +17,9 @@ def n_macd(df):
     highest_mac = pd.Series(mac).rolling(window=50).max()
     macNorm = [((mac[i] - lowest_mac[i])/(highest_mac[i] -
                 lowest_mac[i]+0.000001)*2) - 1 for i in range(r_len)]
-    trigger = pd.Series(macNorm).rolling(window=9).mean()
-
+    trigger = pd.Series(macNorm, index=df.index).fillna(
+        0).rolling(window=9).mean().fillna(0)
+    print(trigger)
     return pd.DataFrame({'macNorm': macNorm, 'trigger': trigger}, index=df.index)
 
 
