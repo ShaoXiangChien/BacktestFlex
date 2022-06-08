@@ -392,6 +392,26 @@ def simulation(btc_df, profit_target, buy_long_conditions, sell_short_conditions
         return record, result, True
 
 
+@st.cache(suppress_st_warning=True)
+def index_generate(df):
+    for ta in required_ta + ['atr']:
+        try:
+            if 'ma' == ta[-2:]:
+                output = eval('index.ma(df, ' + ta[:-2] + ')')
+            else:
+                output = eval('index.' + ta + '(df)')
+            output.name = ta.lower() if type(output) == pd.core.series.Series else None
+            # 透過 merge 把輸出結果併入 df DataFrame
+            df = pd.merge(df, pd.DataFrame(output),
+                          left_on=df.index, right_on=output.index)
+            df = df.set_index('key_0')
+        except Exception as e:
+            print(e)
+    df.reset_index(inplace=True)
+    df.rename(columns={'key_0': 'time'}, inplace=True)
+    return df
+
+
 def main():
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.title("Bitcoin Trading Strategy Backtest")
@@ -469,28 +489,6 @@ def main():
             f"Portion to end {i+1}", 0.0, 1.0, step=0.05, key=f"portion {i}")
         profit_target.append((target, portion))
 
-    # Index generation
-    st.header("Index Generation")
-    st.write(required_ta)
-    if st.checkbox("start to generate"):
-        for ta in required_ta + ['atr']:
-            try:
-                if 'ma' == ta[-2:]:
-                    output = eval('index.ma(btc_df, ' + ta[:-2] + ')')
-                else:
-                    output = eval('index.' + ta + '(btc_df)')
-                output.name = ta.lower() if type(output) == pd.core.series.Series else None
-                # 透過 merge 把輸出結果併入 df DataFrame
-                btc_df = pd.merge(btc_df, pd.DataFrame(output),
-                                  left_on=btc_df.index, right_on=output.index)
-                btc_df = btc_df.set_index('key_0')
-            except Exception as e:
-                print(e)
-
-        btc_df.reset_index(inplace=True)
-        btc_df.rename(columns={'key_0': 'time'}, inplace=True)
-        st.dataframe(btc_df)
-
     # parameters setting
     st.header("Parameter Setting")
     initial_investment = st.number_input(
@@ -499,6 +497,29 @@ def main():
     leverage = st.number_input("Leverage Level", 1, 150, 5)
     percent_per_action = st.number_input(
         "The portion of the account balance per action", 0, 100) / 100
+
+    # Index generation
+    st.header("Index Generation")
+    # st.write(required_ta)
+    # if st.checkbox("start to generate"):
+    #     for ta in required_ta + ['atr']:
+    #         try:
+    #             if 'ma' == ta[-2:]:
+    #                 output = eval('index.ma(btc_df, ' + ta[:-2] + ')')
+    #             else:
+    #                 output = eval('index.' + ta + '(btc_df)')
+    #             output.name = ta.lower() if type(output) == pd.core.series.Series else None
+    #             # 透過 merge 把輸出結果併入 df DataFrame
+    #             btc_df = pd.merge(btc_df, pd.DataFrame(output),
+    #                               left_on=btc_df.index, right_on=output.index)
+    #             btc_df = btc_df.set_index('key_0')
+    #         except Exception as e:
+    #             print(e)
+
+    #     btc_df.reset_index(inplace=True)
+    #     btc_df.rename(columns={'key_0': 'time'}, inplace=True)
+    btc_df = index_generate(btc_df)
+    st.dataframe(btc_df)
 
     # simulation
     st.header("Simulation")
