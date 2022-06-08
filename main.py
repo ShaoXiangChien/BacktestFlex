@@ -535,9 +535,9 @@ def main():
 
         st.subheader("Simulation Plot")
         start_date = dt.datetime.combine(st.date_input(
-            '起始日期', btc_df.iloc[2000].time.date()), dt.datetime.min.time())
+            '起始日期', btc_df.iloc[0].time.date()), dt.datetime.min.time())
         end_date = dt.datetime.combine(st.date_input(
-            '結束日期', btc_df.iloc[2001].time.date()), dt.datetime.max.time())
+            '結束日期', btc_df.iloc[10].time.date()), dt.datetime.max.time())
 
         if 'macdhist' in list(btc_df.columns):
             btc_df["color"] = np.where(
