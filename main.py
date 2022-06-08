@@ -424,12 +424,15 @@ def main():
         timeframe = st.selectbox('timeframe', ['15m', '1h'])
         btc_df = pd.read_feather('./btc_' + timeframe + '_price.feather')
     else:
+        current_prices = client.get_all_tickers()
+        tickers = [c['symbol'] for c in current_prices]
+        ticker = st.selectbox("Select the exchange pair", tickers)
         timeframe = st.selectbox('Select your trading timeframe: ', [
             '1m', '3m', '5m', '15m', '30m', '1h', '2h', '4h', '6h', '8h', '12h', '1d', '3d', '1w', '1M'], 3)
         timestamp = client._get_earliest_valid_timestamp(
-            'BTCUSDT', timeframe)
+            ticker, timeframe)
         st.write(pd.to_datetime(timestamp, unit='ms'))
-        bars = client.get_historical_klines('BTCUSDT', timeframe, timestamp)
+        bars = client.get_historical_klines(ticker, timeframe, timestamp)
         for line in bars:
             del line[6:]
 
