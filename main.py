@@ -242,8 +242,9 @@ def simulation(btc_df, profit_target, buy_long_conditions, sell_short_conditions
             stop_loss = row.close - row['atr']
             target = profit_target[0][0]
             stop_profit = row.close + row['atr'] * target
-            record = record.append(
-                {'time': row.time, 'price': row.close, 'cost': u_amount, 'profit': 0, 'action': 'buy long', 'range': f'{stop_loss} - {stop_profit}'}, ignore_index=True)
+            tmp = pd.DataFrame({'time': [row.time], 'price': [row.close], 'cost': [u_amount], 'profit': [
+                               0], 'action': ['buy long'], 'range': [f'{stop_loss} - {stop_profit}']})
+            record = pd.concat([record, tmp], ignore_index=True, axis=0)
             transaction_count += 1
 
         # 2. sell short
@@ -257,8 +258,12 @@ def simulation(btc_df, profit_target, buy_long_conditions, sell_short_conditions
             stop_loss = row.close + row['atr']
             target = profit_target[0][0]
             stop_profit = row.close - row['atr'] * target
-            record = record.append(
-                {'time': row.time, 'price': row.close, 'cost': u_amount, 'profit': 0, 'action': 'sell short', 'range': f'{stop_profit} - {stop_loss}'}, ignore_index=True)
+            # record = record.append(
+            #     {'time': row.time, 'price': row.close, 'cost': u_amount, 'profit': 0, 'action': 'sell short', 'range': f'{stop_profit} - {stop_loss}'}, ignore_index=True)
+            tmp = pd.DataFrame({'time': [row.time], 'price': [row.close], 'cost': [u_amount], 'profit': [
+                               0], 'action': ['sell short'], 'range': [f'{stop_profit} - {stop_loss}']})
+            record = pd.concat([record, tmp], ignore_index=True, axis=0)
+
             transaction_count += 1
 
         # 3. end position
@@ -268,16 +273,22 @@ def simulation(btc_df, profit_target, buy_long_conditions, sell_short_conditions
                     delta = random.randint(-5, 5)
                     price_diff = (stop_loss + delta) - position['price']
                     balance += price_diff * position['amount']
-                    record = record.append(
-                        {'time': row.time, 'price': stop_loss + delta, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'long stop loss'}, ignore_index=True)
+                    # record = record.append(
+                    #     {'time': row.time, 'price': stop_loss + delta, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'long stop loss'}, ignore_index=True)
+                    tmp = pd.DataFrame({'time': [row.time], 'price': [stop_loss + delta], 'cost': [0], 'profit': [
+                                       price_diff * leverage / position['price']], 'action': ['long stop loss']})
+                    record = pd.concat(
+                        [record, tmp], ignore_index=True, axis=0)
                     position['amount'] = 0
                     position['price'] = 0
                     stop_loss, stop_profit = 0, 0
                     up_stack = profit_target.copy()
                     down_stack = []
                     loses += 1
-                    result = result.append(
-                        {'time': row.time, 'balance': balance}, ignore_index=True)
+                    tmp = pd.DataFrame(
+                        {'time': [row.time], 'balance': [balance]})
+                    result = pd.concat(
+                        [result, tmp], ignore_index=True, axis=0)
                     long_just_out = True
                     continue
 
@@ -311,8 +322,12 @@ def simulation(btc_df, profit_target, buy_long_conditions, sell_short_conditions
                     profit = price_diff * amount
                     balance += profit
                     stop_loss = position['price']
-                    record = record.append(
-                        {'time': row.time, 'price': bid_price, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'long stop profit' if price_diff > 0 else 'long stop loss'}, ignore_index=True)
+                    # record = record.append(
+                    #     {'time': row.time, 'price': bid_price, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'long stop profit' if price_diff > 0 else 'long stop loss'}, ignore_index=True)
+                    tmp = pd.DataFrame({'time': [row.time], 'price': [bid_price], 'cost': [0], 'profit': [
+                                       price_diff * leverage / position['price']], 'action': ['long stop profit' if price_diff > 0 else 'long stop loss']})
+                    record = pd.concat(
+                        [record, tmp], ignore_index=True, axis=0)
                     position['amount'] -= amount
                     if position['amount'] <= 0:
                         position['amount'] = 0
@@ -321,8 +336,10 @@ def simulation(btc_df, profit_target, buy_long_conditions, sell_short_conditions
                         up_stack = profit_target.copy()
                         down_stack = []
                         wins += 1
-                    result = result.append(
-                        {'time': row.time, 'balance': balance}, ignore_index=True)
+                    tmp = pd.DataFrame(
+                        {'time': [row.time], 'balance': [balance]})
+                    result = pd.concat(
+                        [result, tmp], ignore_index=True, axis=0)
                     long_just_out = True
                     continue
 
@@ -331,14 +348,20 @@ def simulation(btc_df, profit_target, buy_long_conditions, sell_short_conditions
                     delta = random.randint(-5, 5)
                     price_diff = (stop_loss + delta) - position['price']
                     balance += price_diff * position['amount']
-                    record = record.append(
-                        {'time': row.time, 'price': stop_loss + delta, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'short stop loss'}, ignore_index=True)
+                    # record = record.append(
+                    #     {'time': row.time, 'price': stop_loss + delta, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'short stop loss'}, ignore_index=True)
+                    tmp = pd.DataFrame({'time': [row.time], 'price': [stop_loss + delta], 'cost': [0], 'profit': [
+                                       price_diff * leverage / position['price']], 'action': ['short stop loss']})
+                    record = pd.concat(
+                        [record, tmp], ignore_index=True, axis=0)
                     position['amount'] = 0
                     position['price'] = 0
                     stop_loss, stop_profit = 0, 0
                     loses += 1
-                    result = result.append(
-                        {'time': row.time, 'balance': balance}, ignore_index=True)
+                    tmp = pd.DataFrame(
+                        {'time': [row.time], 'balance': [balance]})
+                    result = pd.concat(
+                        [result, tmp], ignore_index=True, axis=0)
                     short_just_out = True
                     continue
 
@@ -372,8 +395,12 @@ def simulation(btc_df, profit_target, buy_long_conditions, sell_short_conditions
                     profit = price_diff * amount
                     balance += profit
                     stop_loss = position['price']
-                    record = record.append(
-                        {'time': row.time, 'price': bid_price, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'short stop profit' if price_diff < 0 else 'short stop loss'}, ignore_index=True)
+                    # record = record.append(
+                    #     {'time': row.time, 'price': bid_price, 'cost': 0, 'profit': price_diff * leverage / position['price'], 'action': 'short stop profit' if price_diff < 0 else 'short stop loss'}, ignore_index=True)
+                    tmp = pd.DataFrame({'time': [row.time], 'price': [bid_price], 'cost': [0], 'profit': [
+                                       price_diff * leverage / position['price']], 'action': ['short stop profit' if price_diff < 0 else 'short stop loss']})
+                    record = pd.concat(
+                        [record, tmp], ignore_index=True, axis=0)
                     position['amount'] -= amount
                     if position['amount'] <= 0:
                         position['amount'] = 0
@@ -382,8 +409,10 @@ def simulation(btc_df, profit_target, buy_long_conditions, sell_short_conditions
                         up_stack = profit_target.copy()
                         down_stack = []
                         wins += 1
-                    result = result.append(
-                        {'time': row.time, 'balance': balance}, ignore_index=True)
+                    tmp = pd.DataFrame(
+                        {'time': [row.time], 'balance': [balance]})
+                    result = pd.concat(
+                        [result, tmp], ignore_index=True, axis=0)
                     short_just_out = True
                     continue
 
@@ -657,9 +686,14 @@ def main():
         result.to_csv("./sim_result.csv", index=False)
         record.to_csv("./sim_record.csv", index=False)
     if transaction_count != 0:
+        # st.write(
+        #     f"transaction: {transaction_count}, wins: {wins}, loses: {loses}")
+        # st.write(f"winning rate: {float(wins/transaction_count)*100:.2f}%")
         st.write(
-            f"transaction: {transaction_count}, wins: {wins}, loses: {loses}")
-        st.write(f"winning rate {float(wins/transaction_count)}")
+            f"In {transaction_count} transactions, {wins} wins, {loses} losses")
+        # st.write(pd.DataFrame({'transaction': transaction_count, 'wins': wins, 'loses': loses,
+        #          'winning rate': f"{float(wins/transaction_count)*100:.2f}%"}, index=[0]))
+        st.write("winning rate", f"{float(wins/transaction_count)*100:.2f}%")
 
 
 if __name__ == '__main__':
