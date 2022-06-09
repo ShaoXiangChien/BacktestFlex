@@ -452,6 +452,7 @@ def main():
     if data_mode == 'Use available ones':
         timeframe = st.selectbox('timeframe', ['15m', '1h'])
         btc_df = pd.read_feather('./btc_' + timeframe + '_price.feather')
+        st.success("Bitcoin price information loaded!")
     else:
         current_prices = client.get_all_tickers()
         tickers = [c['symbol'] for c in current_prices]
@@ -467,9 +468,10 @@ def main():
 
         btc_df = pd.DataFrame(
             bars, columns=['time', 'open', 'high', 'low', 'close', 'volume'])
+        st.success("{} {} price information loaded!".format(ticker, timeframe))
+
     btc_df.set_index('time', inplace=True)
     btc_df.index = pd.to_datetime(btc_df.index, unit='ms')
-    st.success("Bitcoin price information loaded!")
     st.dataframe(btc_df)
 
     # strategy development
