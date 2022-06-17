@@ -38,7 +38,7 @@ signal_list = [
 # btc_df = pd.DataFrame()
 idx = 0
 required_ta = []
-ma_colors = ['yellow', 'orange', 'red']
+ma_colors = ['yellow', 'orange', 'pink', 'red']
 
 
 def add_new_action(signal_choice, id, action):
@@ -76,15 +76,17 @@ def add_new_action(signal_choice, id, action):
     elif signal_choice == 'ma_up_penetrate':
         cond_dt['signal'] = signal_choice
         cond_dt['penetrator'] = st.selectbox(
-            'Up Penetrator', ['low price', 'high price', 'open price', 'close price'])
-        cond_dt['ma period'] = st.number_input('up ma period', 1, 201)
+            'Up Penetrator', ['low price', 'high price', 'open price', 'close price'], key="{} {} penetrate up".format(id, action))
+        cond_dt['ma period'] = st.number_input(
+            'up ma period', 1, 201, key="{} {} penetrate up".format(id, action))
         if f"{cond_dt['ma period']}ma" not in required_ta:
             required_ta.append(f"{cond_dt['ma period']}ma")
     elif signal_choice == 'ma_down_penetrate':
         cond_dt['signal'] = signal_choice
         cond_dt['penetrator'] = st.selectbox(
-            'Down Penetrator', ['low price', 'high price', 'open price', 'close price'])
-        cond_dt['ma period'] = st.number_input('down ma period', 1, 201)
+            'Down Penetrator', ['low price', 'high price', 'open price', 'close price'], key="{} {} penetrate down".format(id, action))
+        cond_dt['ma period'] = st.number_input(
+            'down ma period', 1, 201, key="{} {} penetrate down".format(id, action))
         if f"{cond_dt['ma period']}ma" not in required_ta:
             required_ta.append(f"{cond_dt['ma period']}ma")
     elif signal_choice == 'constant_compare':
