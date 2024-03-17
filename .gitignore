@@ -1,0 +1,6 @@
+.venv
+
+.env
+sim_record.csv
+sim_result.csv
+node_modules

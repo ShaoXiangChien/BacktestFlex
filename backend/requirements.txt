@@ -1,0 +1,9 @@
+alpha_vantage
+python-binance
+python-dotenv
+uvicorn
+fastapi
+pydantic
+pandas
+numpy
+pyarrow

@@ -1,0 +1,1102 @@
+[
+    {
+        "label": "BaseSettings",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Body",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "index_generate",
+        "importPath": "service.indicator",
+        "description": "service.indicator",
+        "isExtraImport": true,
+        "detail": "service.indicator",
+        "documentation": {}
+    },
+    {
+        "label": "IndexRequest",
+        "importPath": "model.indicator",
+        "description": "model.indicator",
+        "isExtraImport": true,
+        "detail": "model.indicator",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "get_stock_data_alpha_vantage",
+        "importPath": "service.price",
+        "description": "service.price",
+        "isExtraImport": true,
+        "detail": "service.price",
+        "documentation": {}
+    },
+    {
+        "label": "StockDataRequest",
+        "importPath": "model.price",
+        "description": "model.price",
+        "isExtraImport": true,
+        "detail": "model.price",
+        "documentation": {}
+    },
+    {
+        "label": "SimulationRequest",
+        "importPath": "model.simulation",
+        "description": "model.simulation",
+        "isExtraImport": true,
+        "detail": "model.simulation",
+        "documentation": {}
+    },
+    {
+        "label": "Strategy",
+        "importPath": "service.strategy",
+        "description": "service.strategy",
+        "isExtraImport": true,
+        "detail": "service.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "Simulation",
+        "importPath": "service.simulation",
+        "description": "service.simulation",
+        "isExtraImport": true,
+        "detail": "service.simulation",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "StrategyModel",
+        "importPath": "model.strategy",
+        "description": "model.strategy",
+        "isExtraImport": true,
+        "detail": "model.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "TimeSeries",
+        "importPath": "alpha_vantage.timeseries",
+        "description": "alpha_vantage.timeseries",
+        "isExtraImport": true,
+        "detail": "alpha_vantage.timeseries",
+        "documentation": {}
+    },
+    {
+        "label": "TimeSeries",
+        "importPath": "alpha_vantage.timeseries",
+        "description": "alpha_vantage.timeseries",
+        "isExtraImport": true,
+        "detail": "alpha_vantage.timeseries",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "importPath": "router.simulation",
+        "description": "router.simulation",
+        "isExtraImport": true,
+        "detail": "router.simulation",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "importPath": "router.strategy",
+        "description": "router.strategy",
+        "isExtraImport": true,
+        "detail": "router.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "importPath": "router.price",
+        "description": "router.price",
+        "isExtraImport": true,
+        "detail": "router.price",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "importPath": "router.indicator",
+        "description": "router.indicator",
+        "isExtraImport": true,
+        "detail": "router.indicator",
+        "documentation": {}
+    },
+    {
+        "label": "streamlit",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "streamlit",
+        "description": "streamlit",
+        "detail": "streamlit",
+        "documentation": {}
+    },
+    {
+        "label": "strategy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "strategy",
+        "description": "strategy",
+        "detail": "strategy",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "index",
+        "description": "index",
+        "detail": "index",
+        "documentation": {}
+    },
+    {
+        "label": "stqdm",
+        "importPath": "stqdm",
+        "description": "stqdm",
+        "isExtraImport": true,
+        "detail": "stqdm",
+        "documentation": {}
+    },
+    {
+        "label": "Client",
+        "importPath": "binance.client",
+        "description": "binance.client",
+        "isExtraImport": true,
+        "detail": "binance.client",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "make_subplots",
+        "importPath": "plotly.subplots",
+        "description": "plotly.subplots",
+        "isExtraImport": true,
+        "detail": "plotly.subplots",
+        "documentation": {}
+    },
+    {
+        "label": "plotly.figure_factory",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "plotly.figure_factory",
+        "description": "plotly.figure_factory",
+        "detail": "plotly.figure_factory",
+        "documentation": {}
+    },
+    {
+        "label": "plotly.graph_objects",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "plotly.graph_objects",
+        "description": "plotly.graph_objects",
+        "detail": "plotly.graph_objects",
+        "documentation": {}
+    },
+    {
+        "label": "plotly.express",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "plotly.express",
+        "description": "plotly.express",
+        "detail": "plotly.express",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "Settings",
+        "kind": 6,
+        "importPath": "backend.app.config.settings",
+        "description": "backend.app.config.settings",
+        "peekOfCode": "class Settings(BaseSettings):\n    alpha_vintage_api_key: str\n    binance_api_key: str\n    binance_secret_key: str\n    class Config:\n        env_file = \".env\"\nsettings = Settings()",
+        "detail": "backend.app.config.settings",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "kind": 5,
+        "importPath": "backend.app.config.settings",
+        "description": "backend.app.config.settings",
+        "peekOfCode": "settings = Settings()",
+        "detail": "backend.app.config.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TAInfo",
+        "kind": 6,
+        "importPath": "backend.app.model.indicator",
+        "description": "backend.app.model.indicator",
+        "peekOfCode": "class TAInfo(BaseModel):\n    name: str\n    period: Optional[int] = None\n    type: Optional[str] = None\nclass IndexRequest(BaseModel):\n    price_data: List[dict]  # 假設客戶端將價格數據作為字典列表發送\n    required_ta: List[TAInfo]",
+        "detail": "backend.app.model.indicator",
+        "documentation": {}
+    },
+    {
+        "label": "IndexRequest",
+        "kind": 6,
+        "importPath": "backend.app.model.indicator",
+        "description": "backend.app.model.indicator",
+        "peekOfCode": "class IndexRequest(BaseModel):\n    price_data: List[dict]  # 假設客戶端將價格數據作為字典列表發送\n    required_ta: List[TAInfo]",
+        "detail": "backend.app.model.indicator",
+        "documentation": {}
+    },
+    {
+        "label": "StockDataRequest",
+        "kind": 6,
+        "importPath": "backend.app.model.price",
+        "description": "backend.app.model.price",
+        "peekOfCode": "class StockDataRequest(BaseModel):\n    symbol: str = Field(..., description=\"The stock symbol to retrieve data for.\")\n    interval: str = Field(\n        ...,\n        description=\"The interval for the stock data. Can be '1min', '5min', '15min', '30min', '60min', 'daily', 'weekly', or 'monthly'.\",\n    )\n    months: int = Field(\n        ..., description=\"The number of months back to retrieve data for.\"\n    )",
+        "detail": "backend.app.model.price",
+        "documentation": {}
+    },
+    {
+        "label": "SimulationRequest",
+        "kind": 6,
+        "importPath": "backend.app.model.simulation",
+        "description": "backend.app.model.simulation",
+        "peekOfCode": "class SimulationRequest(BaseModel):\n    strategy_id: str\n    initial_balance: float\n    data: List[dict]  # 或者是更具體的數據模型",
+        "detail": "backend.app.model.simulation",
+        "documentation": {}
+    },
+    {
+        "label": "StrategyModel",
+        "kind": 6,
+        "importPath": "backend.app.model.strategy",
+        "description": "backend.app.model.strategy",
+        "peekOfCode": "class StrategyModel(BaseModel):\n    strategy_name: str\n    operation_mode: str\n    entry_conditions: List[Dict]\n    exit_conditions: List[Dict]",
+        "detail": "backend.app.model.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "backend.app.router.indicator",
+        "description": "backend.app.router.indicator",
+        "peekOfCode": "router = APIRouter()\n@router.post(\"/generate-indexes/\")\nasync def generate_indexes(request: IndexRequest):\n    try:\n        # 將請求中的價格數據轉換成DataFrame\n        df = pd.DataFrame(request.price_data)\n        # rename column date to time\n        df.rename(columns={\"date\": \"time\"}, inplace=True)\n        # 調用 index_generate 函數生成指標\n        df_w_index = index_generate(df, request.required_ta)",
+        "detail": "backend.app.router.indicator",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "backend.app.router.price",
+        "description": "backend.app.router.price",
+        "peekOfCode": "router = APIRouter()\n@router.post(\"/stock-data/\", response_model=List[dict])\nasync def stock_data(request: StockDataRequest):\n    try:\n        data = get_stock_data_alpha_vantage(\n            symbol=request.symbol, interval=request.interval, months=request.months\n        )\n        return data.reset_index().to_dict(\"records\")  # 將DataFrame轉換為字典列表\n    except ValueError as e:\n        raise HTTPException(status_code=400, detail=str(e))",
+        "detail": "backend.app.router.price",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "backend.app.router.simulation",
+        "description": "backend.app.router.simulation",
+        "peekOfCode": "router = APIRouter()\n# 假設你已有一個全局的策略存儲機制\nstrategies = {}\n@router.post(\"/run-simulation\")\nasync def run_simulation(request: SimulationRequest):\n    strategy_config = strategies.get(request.strategy_id)\n    if strategy_config is None:\n        raise HTTPException(status_code=404, detail=\"Strategy not found\")\n    strategy = Strategy(strategy_config)\n    sim = Simulation(strategy, request.initial_balance)",
+        "detail": "backend.app.router.simulation",
+        "documentation": {}
+    },
+    {
+        "label": "strategies",
+        "kind": 5,
+        "importPath": "backend.app.router.simulation",
+        "description": "backend.app.router.simulation",
+        "peekOfCode": "strategies = {}\n@router.post(\"/run-simulation\")\nasync def run_simulation(request: SimulationRequest):\n    strategy_config = strategies.get(request.strategy_id)\n    if strategy_config is None:\n        raise HTTPException(status_code=404, detail=\"Strategy not found\")\n    strategy = Strategy(strategy_config)\n    sim = Simulation(strategy, request.initial_balance)\n    result = sim.simulate(request.data)\n    return result",
+        "detail": "backend.app.router.simulation",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "backend.app.router.strategy",
+        "description": "backend.app.router.strategy",
+        "peekOfCode": "router = APIRouter()\n# 用於存儲策略的簡單內存數據庫\nstrategies = {}\n# 策略配置的模型\n@router.post(\"/\")\nasync def create_strategy(strategy: StrategyModel):\n    strategy_id = str(uuid.uuid4())\n    strategies[strategy_id] = strategy.dict()\n    return {\"strategy_id\": strategy_id, \"strategy\": strategies[strategy_id]}\n@router.get(\"/{strategy_id}\")",
+        "detail": "backend.app.router.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "strategies",
+        "kind": 5,
+        "importPath": "backend.app.router.strategy",
+        "description": "backend.app.router.strategy",
+        "peekOfCode": "strategies = {}\n# 策略配置的模型\n@router.post(\"/\")\nasync def create_strategy(strategy: StrategyModel):\n    strategy_id = str(uuid.uuid4())\n    strategies[strategy_id] = strategy.dict()\n    return {\"strategy_id\": strategy_id, \"strategy\": strategies[strategy_id]}\n@router.get(\"/{strategy_id}\")\nasync def get_strategy(strategy_id: str):\n    strategy = strategies.get(strategy_id)",
+        "detail": "backend.app.router.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "index_generate",
+        "kind": 2,
+        "importPath": "backend.app.service.indicator",
+        "description": "backend.app.service.indicator",
+        "peekOfCode": "def index_generate(df, required_ta):\n    for ta_info in required_ta:\n        ta_name = ta_info.name\n        try:\n            if ta_name == \"ma\":\n                period = ta_info.period\n                ma_type = ta_info.type\n                output = index.ma(df, timeperiod=period, ma_type=ma_type)\n            else:\n                output = getattr(index, ta_name)(df)",
+        "detail": "backend.app.service.indicator",
+        "documentation": {}
+    },
+    {
+        "label": "get_stock_data_alpha_vantage",
+        "kind": 2,
+        "importPath": "backend.app.service.price",
+        "description": "backend.app.service.price",
+        "peekOfCode": "def get_stock_data_alpha_vantage(symbol, interval, months):\n    outputsize = \"full\"\n    if interval == \"daily\":\n        data, meta_data = ts.get_daily(symbol=symbol, outputsize=outputsize)\n    elif interval == \"weekly\":\n        data, meta_data = ts.get_weekly(symbol=symbol, outputsize=outputsize)\n    elif interval == \"monthly\":\n        data, meta_data = ts.get_monthly(symbol=symbol, outputsize=outputsize)\n    elif interval.endswith(\"min\"):\n        data, meta_data = ts.get_intraday(",
+        "detail": "backend.app.service.price",
+        "documentation": {}
+    },
+    {
+        "label": "ts",
+        "kind": 5,
+        "importPath": "backend.app.service.price",
+        "description": "backend.app.service.price",
+        "peekOfCode": "ts = TimeSeries(key=\"UWEB4RNFJ934F5EN\", output_format=\"pandas\")\ndef get_stock_data_alpha_vantage(symbol, interval, months):\n    outputsize = \"full\"\n    if interval == \"daily\":\n        data, meta_data = ts.get_daily(symbol=symbol, outputsize=outputsize)\n    elif interval == \"weekly\":\n        data, meta_data = ts.get_weekly(symbol=symbol, outputsize=outputsize)\n    elif interval == \"monthly\":\n        data, meta_data = ts.get_monthly(symbol=symbol, outputsize=outputsize)\n    elif interval.endswith(\"min\"):",
+        "detail": "backend.app.service.price",
+        "documentation": {}
+    },
+    {
+        "label": "Trade",
+        "kind": 6,
+        "importPath": "backend.app.service.simulation",
+        "description": "backend.app.service.simulation",
+        "peekOfCode": "class Trade:\n    def __init__(self, entry_price, exit_price, is_long, entry_time, exit_time):\n        self.entry_price = entry_price\n        self.exit_price = exit_price\n        self.is_long = is_long\n        self.entry_time = entry_time\n        self.exit_time = exit_time\n        self.profit = (\n            (exit_price - entry_price) if is_long else (entry_price - exit_price)\n        )",
+        "detail": "backend.app.service.simulation",
+        "documentation": {}
+    },
+    {
+        "label": "Simulation",
+        "kind": 6,
+        "importPath": "backend.app.service.simulation",
+        "description": "backend.app.service.simulation",
+        "peekOfCode": "class Simulation:\n    def __init__(self, strategy, initial_balance):\n        self.strategy = strategy\n        self.initial_balance = initial_balance\n        self.balance = initial_balance\n        self.trades = []\n    def simulate(self, data):\n        \"\"\"\n        模擬交易。\n        data 是一個列表，每個元素是一個包含單個時期指標數據的字典。",
+        "detail": "backend.app.service.simulation",
+        "documentation": {}
+    },
+    {
+        "label": "Strategy",
+        "kind": 6,
+        "importPath": "backend.app.service.strategy",
+        "description": "backend.app.service.strategy",
+        "peekOfCode": "class Strategy:\n    def __init__(self, strategy_config):\n        self.name = strategy_config.get(\"strategy_name\", \"Unnamed Strategy\")\n        self.operation_mode = strategy_config.get(\n            \"operation_mode\", \"both\"\n        )  # \"long_only\", \"short_only\", \"both\"\n        self.entry_conditions = strategy_config.get(\"entry_conditions\", [])\n        self.exit_conditions = strategy_config.get(\"exit_conditions\", [])\n    @staticmethod\n    def load_from_json(file_path):",
+        "detail": "backend.app.service.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "golden_cross",
+        "kind": 2,
+        "importPath": "backend.app.service.strategy",
+        "description": "backend.app.service.strategy",
+        "peekOfCode": "def golden_cross(fast, last_fast, slow, last_slow):\n    return (last_fast < fast) and (fast > slow)\ndef death_cross(fast, last_fast, slow, last_slow):\n    return (last_fast > fast) and (fast < slow)\ndef ma_up_penetrate(price, ma, last_ma):\n    return (price > ma) and (last_ma < ma)\ndef ma_down_penetrate(price, ma, last_ma):\n    return (price < ma) and (last_ma > ma)\ndef constant_compare(idx, op, constant):\n    return eval(str(idx) + op + str(constant), locals())",
+        "detail": "backend.app.service.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "death_cross",
+        "kind": 2,
+        "importPath": "backend.app.service.strategy",
+        "description": "backend.app.service.strategy",
+        "peekOfCode": "def death_cross(fast, last_fast, slow, last_slow):\n    return (last_fast > fast) and (fast < slow)\ndef ma_up_penetrate(price, ma, last_ma):\n    return (price > ma) and (last_ma < ma)\ndef ma_down_penetrate(price, ma, last_ma):\n    return (price < ma) and (last_ma > ma)\ndef constant_compare(idx, op, constant):\n    return eval(str(idx) + op + str(constant), locals())\ndef bounce_back_up(last_price, c_price, last_idx, c_idx):\n    return (last_price <= last_idx) and (c_price >= c_idx)",
+        "detail": "backend.app.service.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "ma_up_penetrate",
+        "kind": 2,
+        "importPath": "backend.app.service.strategy",
+        "description": "backend.app.service.strategy",
+        "peekOfCode": "def ma_up_penetrate(price, ma, last_ma):\n    return (price > ma) and (last_ma < ma)\ndef ma_down_penetrate(price, ma, last_ma):\n    return (price < ma) and (last_ma > ma)\ndef constant_compare(idx, op, constant):\n    return eval(str(idx) + op + str(constant), locals())\ndef bounce_back_up(last_price, c_price, last_idx, c_idx):\n    return (last_price <= last_idx) and (c_price >= c_idx)\ndef bounce_back_down(last_price, c_price, last_idx, c_idx):\n    return (last_price >= last_idx) and (c_price <= c_idx)",
+        "detail": "backend.app.service.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "ma_down_penetrate",
+        "kind": 2,
+        "importPath": "backend.app.service.strategy",
+        "description": "backend.app.service.strategy",
+        "peekOfCode": "def ma_down_penetrate(price, ma, last_ma):\n    return (price < ma) and (last_ma > ma)\ndef constant_compare(idx, op, constant):\n    return eval(str(idx) + op + str(constant), locals())\ndef bounce_back_up(last_price, c_price, last_idx, c_idx):\n    return (last_price <= last_idx) and (c_price >= c_idx)\ndef bounce_back_down(last_price, c_price, last_idx, c_idx):\n    return (last_price >= last_idx) and (c_price <= c_idx)\nclass Strategy:\n    def __init__(self, strategy_config):",
+        "detail": "backend.app.service.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "constant_compare",
+        "kind": 2,
+        "importPath": "backend.app.service.strategy",
+        "description": "backend.app.service.strategy",
+        "peekOfCode": "def constant_compare(idx, op, constant):\n    return eval(str(idx) + op + str(constant), locals())\ndef bounce_back_up(last_price, c_price, last_idx, c_idx):\n    return (last_price <= last_idx) and (c_price >= c_idx)\ndef bounce_back_down(last_price, c_price, last_idx, c_idx):\n    return (last_price >= last_idx) and (c_price <= c_idx)\nclass Strategy:\n    def __init__(self, strategy_config):\n        self.name = strategy_config.get(\"strategy_name\", \"Unnamed Strategy\")\n        self.operation_mode = strategy_config.get(",
+        "detail": "backend.app.service.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "bounce_back_up",
+        "kind": 2,
+        "importPath": "backend.app.service.strategy",
+        "description": "backend.app.service.strategy",
+        "peekOfCode": "def bounce_back_up(last_price, c_price, last_idx, c_idx):\n    return (last_price <= last_idx) and (c_price >= c_idx)\ndef bounce_back_down(last_price, c_price, last_idx, c_idx):\n    return (last_price >= last_idx) and (c_price <= c_idx)\nclass Strategy:\n    def __init__(self, strategy_config):\n        self.name = strategy_config.get(\"strategy_name\", \"Unnamed Strategy\")\n        self.operation_mode = strategy_config.get(\n            \"operation_mode\", \"both\"\n        )  # \"long_only\", \"short_only\", \"both\"",
+        "detail": "backend.app.service.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "bounce_back_down",
+        "kind": 2,
+        "importPath": "backend.app.service.strategy",
+        "description": "backend.app.service.strategy",
+        "peekOfCode": "def bounce_back_down(last_price, c_price, last_idx, c_idx):\n    return (last_price >= last_idx) and (c_price <= c_idx)\nclass Strategy:\n    def __init__(self, strategy_config):\n        self.name = strategy_config.get(\"strategy_name\", \"Unnamed Strategy\")\n        self.operation_mode = strategy_config.get(\n            \"operation_mode\", \"both\"\n        )  # \"long_only\", \"short_only\", \"both\"\n        self.entry_conditions = strategy_config.get(\"entry_conditions\", [])\n        self.exit_conditions = strategy_config.get(\"exit_conditions\", [])",
+        "detail": "backend.app.service.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "backend.app.service.strategy",
+        "description": "backend.app.service.strategy",
+        "peekOfCode": "def main():\n    # 定義一個簡單的策略配置\n    strategy_config = {\n        \"strategy_name\": \"Test Strategy\",\n        \"operation_mode\": \"both\",\n        \"entry_conditions\": [\n            {\n                \"type\": \"golden_cross\",\n                \"indicator\": \"MA\",\n                \"params\": {\"period\": 50},",
+        "detail": "backend.app.service.strategy",
+        "documentation": {}
+    },
+    {
+        "label": "n_macd",
+        "kind": 2,
+        "importPath": "backend.app.utils.index",
+        "description": "backend.app.utils.index",
+        "peekOfCode": "def n_macd(df):\n    sh = df[\"close\"].ewm(span=13, adjust=False).mean()\n    lon = df[\"close\"].ewm(span=21, adjust=False).mean()\n    ratio = [min(sh[i], lon[i]) / max(sh[i], lon[i]) for i in range(sh.shape[0])]\n    r_len = len(ratio)\n    mac = [2 - ratio[i] - 1 if sh[i] > lon[i] else ratio[i] - 1 for i in range(r_len)]\n    lowest_mac = pd.Series(mac).rolling(window=50).min()\n    highest_mac = pd.Series(mac).rolling(window=50).max()\n    macNorm = [\n        ((mac[i] - lowest_mac[i]) / (highest_mac[i] - lowest_mac[i] + 0.000001) * 2) - 1",
+        "detail": "backend.app.utils.index",
+        "documentation": {}
+    },
+    {
+        "label": "sr_bias",
+        "kind": 2,
+        "importPath": "backend.app.utils.index",
+        "description": "backend.app.utils.index",
+        "peekOfCode": "def sr_bias(df):\n    ma10 = df[\"close\"].rolling(window=10).mean()\n    sr = (df[\"close\"] - ma10) / ma10\n    return pd.Series(sr, index=df.index)\ndef lr_bias(df):\n    ma30 = df[\"close\"].rolling(window=30).mean()\n    lr = (df[\"close\"] - ma30) / ma30\n    return pd.Series(lr, index=df.index)\ndef rsi(df, period=21):\n    Close = df[\"close\"].copy()",
+        "detail": "backend.app.utils.index",
+        "documentation": {}
+    },
+    {
+        "label": "lr_bias",
+        "kind": 2,
+        "importPath": "backend.app.utils.index",
+        "description": "backend.app.utils.index",
+        "peekOfCode": "def lr_bias(df):\n    ma30 = df[\"close\"].rolling(window=30).mean()\n    lr = (df[\"close\"] - ma30) / ma30\n    return pd.Series(lr, index=df.index)\ndef rsi(df, period=21):\n    Close = df[\"close\"].copy()\n    Chg = Close - Close.shift(1)\n    Chg_pos = pd.Series(index=Chg.index, data=Chg[Chg > 0]).fillna(0)\n    Chg_neg = pd.Series(index=Chg.index, data=-Chg[Chg < 0]).fillna(0)\n    up_mean = [",
+        "detail": "backend.app.utils.index",
+        "documentation": {}
+    },
+    {
+        "label": "rsi",
+        "kind": 2,
+        "importPath": "backend.app.utils.index",
+        "description": "backend.app.utils.index",
+        "peekOfCode": "def rsi(df, period=21):\n    Close = df[\"close\"].copy()\n    Chg = Close - Close.shift(1)\n    Chg_pos = pd.Series(index=Chg.index, data=Chg[Chg > 0]).fillna(0)\n    Chg_neg = pd.Series(index=Chg.index, data=-Chg[Chg < 0]).fillna(0)\n    up_mean = [\n        np.mean(Chg_pos.values[i - period : i])\n        for i in range(period + 1, len(Chg_pos) + 1)\n    ]\n    down_mean = [",
+        "detail": "backend.app.utils.index",
+        "documentation": {}
+    },
+    {
+        "label": "macd",
+        "kind": 2,
+        "importPath": "backend.app.utils.index",
+        "description": "backend.app.utils.index",
+        "peekOfCode": "def macd(df):\n    exp1 = df[\"close\"].ewm(span=12, adjust=False).mean()\n    exp2 = df[\"close\"].ewm(span=26, adjust=False).mean()\n    macd_series = exp1 - exp2\n    exp3 = macd_series.ewm(span=9, adjust=False).mean()\n    return pd.DataFrame(\n        {\"macd\": macd_series, \"macdsignal\": exp3, \"macdhist\": macd_series - exp3},\n        index=df.index,\n    )\ndef obv(df):",
+        "detail": "backend.app.utils.index",
+        "documentation": {}
+    },
+    {
+        "label": "obv",
+        "kind": 2,
+        "importPath": "backend.app.utils.index",
+        "description": "backend.app.utils.index",
+        "peekOfCode": "def obv(df):\n    obv = (np.sign(df[\"close\"].diff()) * df[\"volume\"]).fillna(0).cumsum()\n    return pd.Series(obv, index=df.index)\ndef ma(df, timeperiod, ma_type=\"SMA\"):\n    if ma_type == \"SMA\":\n        res = df[\"close\"].rolling(window=timeperiod).mean()\n    elif ma_type == \"EMA\":\n        res = df[\"close\"].ewm(span=timeperiod, adjust=False).mean()\n    elif ma_type == \"WMA\":\n        weights = np.arange(1, timeperiod + 1)",
+        "detail": "backend.app.utils.index",
+        "documentation": {}
+    },
+    {
+        "label": "ma",
+        "kind": 2,
+        "importPath": "backend.app.utils.index",
+        "description": "backend.app.utils.index",
+        "peekOfCode": "def ma(df, timeperiod, ma_type=\"SMA\"):\n    if ma_type == \"SMA\":\n        res = df[\"close\"].rolling(window=timeperiod).mean()\n    elif ma_type == \"EMA\":\n        res = df[\"close\"].ewm(span=timeperiod, adjust=False).mean()\n    elif ma_type == \"WMA\":\n        weights = np.arange(1, timeperiod + 1)\n        res = (\n            df[\"close\"]\n            .rolling(timeperiod)",
+        "detail": "backend.app.utils.index",
+        "documentation": {}
+    },
+    {
+        "label": "atr",
+        "kind": 2,
+        "importPath": "backend.app.utils.index",
+        "description": "backend.app.utils.index",
+        "peekOfCode": "def atr(df):\n    high_low = df[\"high\"] - df[\"low\"]\n    high_close = np.abs(df[\"high\"] - df[\"close\"].shift())\n    low_close = np.abs(df[\"low\"] - df[\"close\"].shift())\n    ranges = pd.concat([high_low, high_close, low_close], axis=1)\n    true_range = np.max(ranges, axis=1)\n    atr = true_range.rolling(14).mean()\n    return pd.Series(atr, index=df.index)\ndef bollingerBand(df, n=20):\n    sma = df[\"close\"].rolling(window=n).mean()",
+        "detail": "backend.app.utils.index",
+        "documentation": {}
+    },
+    {
+        "label": "bollingerBand",
+        "kind": 2,
+        "importPath": "backend.app.utils.index",
+        "description": "backend.app.utils.index",
+        "peekOfCode": "def bollingerBand(df, n=20):\n    sma = df[\"close\"].rolling(window=n).mean()\n    bb_up = sma + 2 * df[\"close\"].rolling(window=n).std(ddof=0)\n    bb_down = sma - 2 * df[\"close\"].rolling(window=n).std(ddof=0)\n    bb_width = bb_up - bb_down\n    return pd.DataFrame(\n        {\"BB_up\": bb_up, \"BB_down\": bb_down, \"BB_width\": bb_width}, index=df.index\n    )",
+        "detail": "backend.app.utils.index",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "backend.app.main",
+        "description": "backend.app.main",
+        "peekOfCode": "app = FastAPI()\napp.include_router(simulation_router, prefix=\"/simulation\", tags=[\"simulation\"])\napp.include_router(strategy_router, prefix=\"/strategy\", tags=[\"strategy\"])\napp.include_router(price_router, prefix=\"/price\", tags=[\"price\"])\napp.include_router(indicator_router, prefix=\"/indicator\", tags=[\"indicator\"])",
+        "detail": "backend.app.main",
+        "documentation": {}
+    },
+    {
+        "label": "n_macd",
+        "kind": 2,
+        "importPath": "index",
+        "description": "index",
+        "peekOfCode": "def n_macd(df):\n    sh = df['close'].ewm(span=13, adjust=False).mean()\n    lon = df['close'].ewm(span=21, adjust=False).mean()\n    ratio = [min(sh[i], lon[i]) / max(sh[i], lon[i])\n             for i in range(sh.shape[0])]\n    r_len = len(ratio)\n    mac = [2 - ratio[i] - 1 if sh[i] > lon[i]\n           else ratio[i] - 1 for i in range(r_len)]\n    lowest_mac = pd.Series(mac).rolling(window=50).min()\n    highest_mac = pd.Series(mac).rolling(window=50).max()",
+        "detail": "index",
+        "documentation": {}
+    },
+    {
+        "label": "sr_bias",
+        "kind": 2,
+        "importPath": "index",
+        "description": "index",
+        "peekOfCode": "def sr_bias(df):\n    ma10 = df['close'].rolling(window=10).mean()\n    df['ma10'] = ma10\n    sr = df.apply(lambda row: (row['close'] - row['ma10'])/row['ma10'], axis=1)\n    return pd.Series(sr, index=df.index)\ndef lr_bias(df):\n    ma30 = df['close'].rolling(window=30).mean()\n    df['ma30'] = ma30\n    lr = df.apply(lambda row: (row['close'] - row['ma30'])/row['ma30'], axis=1)\n    return pd.Series(lr, index=df.index)",
+        "detail": "index",
+        "documentation": {}
+    },
+    {
+        "label": "lr_bias",
+        "kind": 2,
+        "importPath": "index",
+        "description": "index",
+        "peekOfCode": "def lr_bias(df):\n    ma30 = df['close'].rolling(window=30).mean()\n    df['ma30'] = ma30\n    lr = df.apply(lambda row: (row['close'] - row['ma30'])/row['ma30'], axis=1)\n    return pd.Series(lr, index=df.index)\ndef rsi(df, period=21):\n    # 整理資料\n    Close = df['close'].copy()\n    Chg = Close - Close.shift(1)\n    Chg_pos = pd.Series(index=Chg.index, data=Chg[Chg > 0])",
+        "detail": "index",
+        "documentation": {}
+    },
+    {
+        "label": "rsi",
+        "kind": 2,
+        "importPath": "index",
+        "description": "index",
+        "peekOfCode": "def rsi(df, period=21):\n    # 整理資料\n    Close = df['close'].copy()\n    Chg = Close - Close.shift(1)\n    Chg_pos = pd.Series(index=Chg.index, data=Chg[Chg > 0])\n    Chg_pos = Chg_pos.fillna(0)\n    Chg_neg = pd.Series(index=Chg.index, data=-Chg[Chg < 0])\n    Chg_neg = Chg_neg.fillna(0)\n    # 計算12日平均漲跌幅度\n    import numpy as np",
+        "detail": "index",
+        "documentation": {}
+    },
+    {
+        "label": "macd",
+        "kind": 2,
+        "importPath": "index",
+        "description": "index",
+        "peekOfCode": "def macd(df):\n    exp1 = df['close'].ewm(span=12, adjust=False).mean()\n    exp2 = df['close'].ewm(span=26, adjust=False).mean()\n    macd_series = exp1 - exp2\n    exp3 = macd_series.ewm(span=9, adjust=False).mean()\n    return pd.DataFrame({'macd': macd_series, 'macdsignal': exp3, 'macdhist': macd_series - exp3}, index=df.index)\ndef obv(df):\n    obv = (np.sign(df['close'].diff()) * df['volume']).fillna(0).cumsum()\n    return pd.Series(obv, index=df.index)\ndef ma(df, timeperiod):",
+        "detail": "index",
+        "documentation": {}
+    },
+    {
+        "label": "obv",
+        "kind": 2,
+        "importPath": "index",
+        "description": "index",
+        "peekOfCode": "def obv(df):\n    obv = (np.sign(df['close'].diff()) * df['volume']).fillna(0).cumsum()\n    return pd.Series(obv, index=df.index)\ndef ma(df, timeperiod):\n    ma_type = st.selectbox(\n        f\"{timeperiod}ma type\", ['SMA', 'EMA', 'WMA'], key=f'{timeperiod}ma')\n    if ma_type == 'SMA':\n        res = df['close'].rolling(window=timeperiod).mean()\n    elif ma_type == 'EMA':\n        res = df['close'].ewm(span=timeperiod, adjust=False).mean()",
+        "detail": "index",
+        "documentation": {}
+    },
+    {
+        "label": "ma",
+        "kind": 2,
+        "importPath": "index",
+        "description": "index",
+        "peekOfCode": "def ma(df, timeperiod):\n    ma_type = st.selectbox(\n        f\"{timeperiod}ma type\", ['SMA', 'EMA', 'WMA'], key=f'{timeperiod}ma')\n    if ma_type == 'SMA':\n        res = df['close'].rolling(window=timeperiod).mean()\n    elif ma_type == 'EMA':\n        res = df['close'].ewm(span=timeperiod, adjust=False).mean()\n    else:\n        weights = np.arange(1, timeperiod + 1)\n        res = df['close'].rolling(timeperiod).apply(",
+        "detail": "index",
+        "documentation": {}
+    },
+    {
+        "label": "atr",
+        "kind": 2,
+        "importPath": "index",
+        "description": "index",
+        "peekOfCode": "def atr(df):\n    high_low = df['high'] - df['low']\n    high_close = np.abs(df['high'] - df['close'].shift())\n    low_close = np.abs(df['low'] - df['close'].shift())\n    ranges = pd.concat([high_low, high_close, low_close], axis=1)\n    true_range = np.max(ranges, axis=1)\n    atr = true_range.rolling(14).sum()/14\n    return pd.Series(atr, index=df.index)\ndef bollingerBand(DF, n=20):\n    df = DF.copy()",
+        "detail": "index",
+        "documentation": {}
+    },
+    {
+        "label": "bollingerBand",
+        "kind": 2,
+        "importPath": "index",
+        "description": "index",
+        "peekOfCode": "def bollingerBand(DF, n=20):\n    df = DF.copy()\n    df['sma'] = df.close.rolling(window=n).mean()\n    bb_up = df['sma'] + 2 * df.close.rolling(window=n).std(ddof=0)\n    bb_down = df['sma'] - 2 * df.close.rolling(window=n).std(ddof=0)\n    bb_width = bb_up - bb_down\n    return pd.DataFrame({\"BB_up\": bb_up, \"BB_down\": bb_down, \"BB_width\": bb_width}, index=df.index)",
+        "detail": "index",
+        "documentation": {}
+    },
+    {
+        "label": "init_session_state",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def init_session_state():\n    if \"candle_df\" not in st.session_state:\n        st.session_state[\"candle_df\"] = None\ndef get_stock_data(symbol, interval, months):\n    \"\"\"\n    獲取指定股票的資料。\n    參數:\n    - symbol: 股票代碼，如 'AAPL'。\n    - interval: 數據週期，如 '1min'、'60min'、'daily'。\n    - months: 時間長度（月），如 1 (一個月)、3 (三個月)、6 (半年)、12 (一年)。",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_stock_data",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_stock_data(symbol, interval, months):\n    \"\"\"\n    獲取指定股票的資料。\n    參數:\n    - symbol: 股票代碼，如 'AAPL'。\n    - interval: 數據週期，如 '1min'、'60min'、'daily'。\n    - months: 時間長度（月），如 1 (一個月)、3 (三個月)、6 (半年)、12 (一年)。\n    返回:\n    - Pandas DataFrame: 股票資料。\n    \"\"\"",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "kchart_generate",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def kchart_generate(data):\n    fig = go.Figure(\n        data=[\n            go.Candlestick(\n                x=data.index,\n                open=data[\"open\"],\n                high=data[\"high\"],\n                low=data[\"low\"],\n                close=data[\"close\"],\n            )",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "add_new_action",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def add_new_action(signal_choice, id, action):\n    cond_dt = {}\n    if signal_choice == \"golden_cross\":\n        cond_dt[\"signal\"] = signal_choice\n        cond_dt[\"index\"] = st.selectbox(\"Index\", ta_list, key=f\"index {id}\" + action)\n        if cond_dt[\"index\"] == \"ma\":\n            cond_dt[\"ma periods\"] = [\n                st.number_input(\"first ma period\", 1, 201, key=f\"fma{id}\" + action),\n                st.number_input(\"second ma period\", 1, 201, key=f\"sma{id}\" + action),\n            ]",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "cond_transform",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def cond_transform(cond):\n    if cond[\"signal\"] == \"golden_cross\":\n        if cond[\"index\"] == \"macd\":\n            col1 = \"macd\"\n            col2 = \"macdsignal\"\n        elif cond[\"index\"] == \"ma\":\n            col1 = f\"{cond['ma periods'][0]}ma\"\n            col2 = f\"{cond['ma periods'][1]}ma\"\n        elif cond[\"index\"] == \"rsi\":\n            col1 = \"rsi\"",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "simulation",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def simulation(\n    candle_df,\n    profit_target,\n    buy_long_conditions,\n    sell_short_conditions,\n    leverage,\n    percent_per_action,\n    balance,\n):\n    position = {\"price\": 0, \"amount\": 0, \"total_amount\": 0, \"atr\": 0}",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "index_generate",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def index_generate(df):\n    for ta in required_ta + [\"atr\"]:\n        try:\n            if \"ma\" == ta[-2:]:\n                output = eval(\"index.ma(df, \" + ta[:-2] + \")\")\n            else:\n                output = eval(\"index.\" + ta + \"(df)\")\n            output.name = ta.lower() if type(output) == pd.core.series.Series else None\n            # 透過 merge 把輸出結果併入 df DataFrame\n            df = pd.merge(",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def main():\n    init_session_state()\n    st.set_option(\"deprecation.showPyplotGlobalUse\", False)\n    st.title(\"Bitcoin Trading Strategy Backtest\")\n    # price data preparation\n    st.header(\"Data Preparation\")\n    data_mode = st.radio(\n        \"Use our existing data or collect data in real-time\",\n        [\"Use available ones\", \"Fetch now\"],\n    )",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "ts",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "ts = TimeSeries(key=os.getenv(\"ALPHA_VINTAGE_API_KEY\"), output_format=\"pandas\")\nclient = Client(os.getenv(\"BINANCE_API_KEY\"), os.getenv(\"BINANCE_SECRET_KEY\"))\nclient.API_URL = \"https://testnet.binance.vision/api\"\n# prepare ta and signal list\nta_list = [\n    \"ma\",\n    \"macd\",\n    \"rsi\",\n    \"kd\",\n    \"obv\",",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "client",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "client = Client(os.getenv(\"BINANCE_API_KEY\"), os.getenv(\"BINANCE_SECRET_KEY\"))\nclient.API_URL = \"https://testnet.binance.vision/api\"\n# prepare ta and signal list\nta_list = [\n    \"ma\",\n    \"macd\",\n    \"rsi\",\n    \"kd\",\n    \"obv\",\n    \"n_macd\",",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "client.API_URL",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "client.API_URL = \"https://testnet.binance.vision/api\"\n# prepare ta and signal list\nta_list = [\n    \"ma\",\n    \"macd\",\n    \"rsi\",\n    \"kd\",\n    \"obv\",\n    \"n_macd\",\n    \"sr_bias\",",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "ta_list",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "ta_list = [\n    \"ma\",\n    \"macd\",\n    \"rsi\",\n    \"kd\",\n    \"obv\",\n    \"n_macd\",\n    \"sr_bias\",\n    \"lr_bias\",\n    \"bollingerBand\",",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "signal_list",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "signal_list = [\n    \"golden_cross\",\n    \"death_cross\",\n    \"ma_up_penetrate\",\n    \"ma_down_penetrate\",\n    \"constant_compare\",\n    \"bounce_back_up\",\n    \"bounce_back_down\",\n]\n# candle_df = pd.DataFrame()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "idx",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "idx = 0\nrequired_ta = []\nma_colors = [\"yellow\", \"orange\", \"pink\", \"red\"]\nprice_timeframe_list = [\n    \"1min\",\n    \"5min\",\n    \"15min\",\n    \"30min\",\n    \"60min\",\n    \"daily\",",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "required_ta",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "required_ta = []\nma_colors = [\"yellow\", \"orange\", \"pink\", \"red\"]\nprice_timeframe_list = [\n    \"1min\",\n    \"5min\",\n    \"15min\",\n    \"30min\",\n    \"60min\",\n    \"daily\",\n    \"weekly\",",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "ma_colors",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "ma_colors = [\"yellow\", \"orange\", \"pink\", \"red\"]\nprice_timeframe_list = [\n    \"1min\",\n    \"5min\",\n    \"15min\",\n    \"30min\",\n    \"60min\",\n    \"daily\",\n    \"weekly\",\n    \"monthly\",",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "price_timeframe_list",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "price_timeframe_list = [\n    \"1min\",\n    \"5min\",\n    \"15min\",\n    \"30min\",\n    \"60min\",\n    \"daily\",\n    \"weekly\",\n    \"monthly\",\n]",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "golden_cross",
+        "kind": 2,
+        "importPath": "strategy",
+        "description": "strategy",
+        "peekOfCode": "def golden_cross(fast, last_fast, slow, last_slow):\n    return (last_fast < fast) and (fast > slow)\ndef death_cross(fast, last_fast, slow, last_slow):\n    return (last_fast > fast) and (fast < slow)\ndef ma_up_penetrate(price, ma, last_ma):\n    return (price > ma) and (last_ma < ma)\ndef ma_down_penetrate(price, ma, last_ma):\n    return (price < ma) and (last_ma > ma)\ndef constant_compare(idx, op, constant):\n    return eval(str(idx) + op + str(constant), locals())",
+        "detail": "strategy",
+        "documentation": {}
+    },
+    {
+        "label": "death_cross",
+        "kind": 2,
+        "importPath": "strategy",
+        "description": "strategy",
+        "peekOfCode": "def death_cross(fast, last_fast, slow, last_slow):\n    return (last_fast > fast) and (fast < slow)\ndef ma_up_penetrate(price, ma, last_ma):\n    return (price > ma) and (last_ma < ma)\ndef ma_down_penetrate(price, ma, last_ma):\n    return (price < ma) and (last_ma > ma)\ndef constant_compare(idx, op, constant):\n    return eval(str(idx) + op + str(constant), locals())\ndef bounce_back_up(last_price, c_price, last_idx, c_idx):\n    return (last_price <= last_idx) and (c_price >= c_idx)",
+        "detail": "strategy",
+        "documentation": {}
+    },
+    {
+        "label": "ma_up_penetrate",
+        "kind": 2,
+        "importPath": "strategy",
+        "description": "strategy",
+        "peekOfCode": "def ma_up_penetrate(price, ma, last_ma):\n    return (price > ma) and (last_ma < ma)\ndef ma_down_penetrate(price, ma, last_ma):\n    return (price < ma) and (last_ma > ma)\ndef constant_compare(idx, op, constant):\n    return eval(str(idx) + op + str(constant), locals())\ndef bounce_back_up(last_price, c_price, last_idx, c_idx):\n    return (last_price <= last_idx) and (c_price >= c_idx)\ndef bounce_back_down(last_price, c_price, last_idx, c_idx):\n    return (last_price >= last_idx) and (c_price <= c_idx)",
+        "detail": "strategy",
+        "documentation": {}
+    },
+    {
+        "label": "ma_down_penetrate",
+        "kind": 2,
+        "importPath": "strategy",
+        "description": "strategy",
+        "peekOfCode": "def ma_down_penetrate(price, ma, last_ma):\n    return (price < ma) and (last_ma > ma)\ndef constant_compare(idx, op, constant):\n    return eval(str(idx) + op + str(constant), locals())\ndef bounce_back_up(last_price, c_price, last_idx, c_idx):\n    return (last_price <= last_idx) and (c_price >= c_idx)\ndef bounce_back_down(last_price, c_price, last_idx, c_idx):\n    return (last_price >= last_idx) and (c_price <= c_idx)",
+        "detail": "strategy",
+        "documentation": {}
+    },
+    {
+        "label": "constant_compare",
+        "kind": 2,
+        "importPath": "strategy",
+        "description": "strategy",
+        "peekOfCode": "def constant_compare(idx, op, constant):\n    return eval(str(idx) + op + str(constant), locals())\ndef bounce_back_up(last_price, c_price, last_idx, c_idx):\n    return (last_price <= last_idx) and (c_price >= c_idx)\ndef bounce_back_down(last_price, c_price, last_idx, c_idx):\n    return (last_price >= last_idx) and (c_price <= c_idx)",
+        "detail": "strategy",
+        "documentation": {}
+    },
+    {
+        "label": "bounce_back_up",
+        "kind": 2,
+        "importPath": "strategy",
+        "description": "strategy",
+        "peekOfCode": "def bounce_back_up(last_price, c_price, last_idx, c_idx):\n    return (last_price <= last_idx) and (c_price >= c_idx)\ndef bounce_back_down(last_price, c_price, last_idx, c_idx):\n    return (last_price >= last_idx) and (c_price <= c_idx)",
+        "detail": "strategy",
+        "documentation": {}
+    },
+    {
+        "label": "bounce_back_down",
+        "kind": 2,
+        "importPath": "strategy",
+        "description": "strategy",
+        "peekOfCode": "def bounce_back_down(last_price, c_price, last_idx, c_idx):\n    return (last_price >= last_idx) and (c_price <= c_idx)",
+        "detail": "strategy",
+        "documentation": {}
+    }
+]
