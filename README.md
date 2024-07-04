@@ -1,15 +1,14 @@
-# 🚀 BacktestFlex: Unleashing the Power of Bitcoin Trading Strategy Backtesting!
+# 🚀 BacktestFlex: Unleashing the Power of Multi-Asset Trading Strategy Backtesting!
 
-Welcome to **BacktestFlex** – your gateway to conquering the world of Bitcoin trading! This Python-powered tool is designed to help you master trading strategies using historical data. With seamless integration with the Binance API and a user-friendly interface via Streamlit, you'll turn your crypto dreams into reality!
+Welcome to **BacktestFlex** – your gateway to conquering the world of financial trading! This Python-powered tool is designed to help you master trading strategies using historical data across multiple assets. With seamless integration with various data sources and a user-friendly interface via Streamlit, you'll turn your trading dreams into reality!
 
 ## ✨ Features: More Than Just Numbers
 
-- **📡 Data Collection**: Whether you're a real-time junkie or a history buff, we've got you covered. Fetch live Bitcoin price data or play around with our curated datasets.
-- **🔍 Multiple Indicators**: From the classic MA and MACD to the intricate KD and OBV, we've packed in a plethora of technical analysis indicators.
-- **🎨 Customizable Strategies**: Mix and match signals to define your unique buy/sell conditions. The world is your oyster!
-- **🎮 Simulation**: Tweak parameters like initial investment, leverage, and action percentage to run backtest simulations that fit your style.
-- **🎨 Visualizations**: Dive into interactive charts that breathe life into price movements, indicators, and backtest outcomes.
-
+- **📡 Universal Data Collection**: Whether you're a real-time junkie or a history buff, we've got you covered. Fetch live price data for various assets or play around with our curated datasets.
+- **🔍 Multiple Indicators**: From the classic MA and MACD to the intricate KD and OBV, we've packed in a plethora of technical analysis indicators applicable to any asset.
+- **🎨 Customizable Strategies**: Mix and match signals to define your unique buy/sell conditions across different markets. The world is your oyster!
+- **🎮 Simulation**: Tweak parameters like initial investment, leverage, and action percentage to run backtest simulations that fit your style for any asset.
+- **🎨 Visualizations**: Dive into interactive charts that breathe life into price movements, indicators, and backtest outcomes for various financial instruments.
 ## 📈 Technical Indicators: The Heartbeat of Trading
 
 **BacktestFlex** is your treasure chest of technical indicators. Whether you're a newbie or a seasoned trader, these tools will help you carve out your trading niche:
@@ -44,13 +43,13 @@ These strategies can be used individually or in combination to define more compl
 ### Essentials
 
 - A sprinkle of Python 3.x magic.
-- A Binance account to unlock the API wonders.
+- Access to financial data sources (e.g., Binance API, Yahoo Finance, etc.)
 
 ### Setting Up
 
 1. 🍴 Fork or clone this treasure: `git clone https://github.com/ShaoXiangChien/BacktestFlex.git`
 2. 📦 Dive into the project directory and summon the required packages: `pip install -r requirements.txt`
-3. 🔑 Whisper your Binance API secrets into `test_api.json`.
+3. 🔑 Configure your data source credentials in `config.json`.
 
 ### Embark on the Adventure
 
@@ -58,7 +57,7 @@ Summon the main script with a simple: `python main.py`
 
 Voila! The Streamlit portal will swing open in your browser. Now, the fun begins:
 
-- Pick your data realm: real-time or historical.
+- Choose your asset and data source: real-time or historical.
 - Craft your trading strategy with precision.
 - Tweak, adjust, refine.
 - Hit the simulation button and bask in the results!
@@ -66,7 +65,3 @@ Voila! The Streamlit portal will swing open in your browser. Now, the fun begins
 ## 🌍 Contributing: Be Part of the Magic!
 
 Got a spark of an idea? Stumbled upon a pesky bug? Or just want to share some love? Join our journey! Open a pull request, flag an issue, or simply drop by to say hi. Every bit helps in making **BacktestFlex** shine brighter!
-
----
-
-Feel free to use this version as your README for **BacktestFlex**! If you have any further requests or need additional adjustments, please let me know.
